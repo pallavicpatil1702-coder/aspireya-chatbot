@@ -1,0 +1,399 @@
+/* ==========================================
+   CLASS 11-12 CAREER REPORT STYLESHEET
+   Aspireya Modern SaaS Design System
+   ========================================== */
+
+.c1112-container {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Card Foundations */
+.c1112-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+}
+
+.c1112-card:hover {
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+}
+
+.c1112-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.c1112-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: rgba(79, 70, 229, 0.08);
+  color: #4f46e5;
+  flex-shrink: 0;
+}
+
+.c1112-card-title {
+  font-family: var(--report-font-heading, 'Montserrat', sans-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+/* Section Grids */
+.c1112-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.c1112-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 868px) {
+  .c1112-grid-2,
+  .c1112-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Executive Summary Highlight Card */
+.c1112-summary-card {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 1px solid #e2e8f0;
+  border-left: 5px solid #4f46e5;
+  border-radius: 20px;
+  padding: 24px;
+  text-align: left;
+}
+
+.c1112-summary-text {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: #334155;
+  margin: 0;
+  font-family: var(--report-font-body, 'Inter', sans-serif);
+}
+
+/* Career Match Cards */
+.c1112-match-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.c1112-match-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.c1112-match-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.c1112-match-pct {
+  font-family: var(--report-font-metrics, 'Inter', monospace);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #4f46e5;
+  background: rgba(79, 70, 229, 0.08);
+  padding: 4px 12px;
+  border-radius: 99px;
+  flex-shrink: 0;
+}
+
+.c1112-progress-track {
+  width: 100%;
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.c1112-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%);
+  border-radius: 99px;
+  transition: width 0.6s ease;
+}
+
+/* Career Fields Card */
+.c1112-field-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.c1112-field-heading {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.c1112-field-desc {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: #475569;
+  margin: 0;
+}
+
+/* Chips / Badges for Degrees & Exams */
+.c1112-chips-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.c1112-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #1e293b;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.c1112-chip:hover {
+  background: #e2e8f0;
+}
+
+.c1112-chip-degree {
+  background: rgba(79, 70, 229, 0.06);
+  border-color: rgba(79, 70, 229, 0.2);
+  color: #3730a3;
+}
+
+.c1112-chip-exam {
+  background: rgba(217, 119, 6, 0.08);
+  border-color: rgba(217, 119, 6, 0.25);
+  color: #92400e;
+}
+
+/* Single Premium Lock Teaser Card */
+.c1112-premium-lock-wrapper {
+  position: relative;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 24px;
+  padding: 36px 28px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+.c1112-preview-backdrop {
+  opacity: 0.18;
+  filter: blur(5px);
+  user-select: none;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.c1112-lock-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  text-align: center;
+  z-index: 10;
+}
+
+.c1112-lock-icon-box {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  color: #b45309;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  box-shadow: 0 6px 18px rgba(217, 119, 6, 0.25);
+}
+
+.c1112-lock-title {
+  font-family: var(--report-font-heading, 'Montserrat', sans-serif);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 10px 0;
+}
+
+.c1112-lock-text {
+  font-size: 0.9rem;
+  color: #475569;
+  max-width: 500px;
+  line-height: 1.65;
+  margin: 0 0 24px 0;
+}
+
+.c1112-lock-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: #ffffff;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 14px;
+  font-family: var(--report-font-heading, 'Montserrat', sans-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.35);
+  transition: all 0.25s ease;
+}
+
+.c1112-lock-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(79, 70, 229, 0.45);
+}
+
+/* Vertical Timeline for Roadmap */
+.c1112-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  padding-left: 24px;
+  border-left: 2px solid rgba(79, 70, 229, 0.2);
+  margin-left: 12px;
+}
+
+.c1112-timeline-item {
+  position: relative;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+.c1112-timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -31px;
+  top: 22px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #4f46e5;
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.18);
+}
+
+.c1112-phase-badge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #4f46e5;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.c1112-phase-desc {
+  font-size: 0.88rem;
+  color: #334155;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Trait Insights Progress Grid */
+.c1112-trait-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 640px) {
+  .c1112-trait-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.c1112-trait-bar-item {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.c1112-trait-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.c1112-trait-score {
+  font-family: var(--report-font-metrics, 'Inter', monospace);
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #4f46e5;
+}
+
+/* Print Overrides */
+@media print {
+  .c1112-card {
+    box-shadow: none !important;
+    border: 1px solid #cbd5e1 !important;
+    break-inside: avoid;
+  }
+  .c1112-lock-overlay {
+    display: none !important;
+  }
+}

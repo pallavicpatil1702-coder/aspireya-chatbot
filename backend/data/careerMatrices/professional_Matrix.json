@@ -1,0 +1,83 @@
+{
+  "Software Architect": {
+    "Logical Reasoning": 5,
+    "Analytical Thinking": 5,
+    "Problem Solving": 5,
+    "Learning Ability": 5,
+    "Digital Literacy": 5,
+    "Planning": 5,
+    "Attention to Detail": 5,
+    "Innovation": 4
+  },
+  "AI / ML Research Lead": {
+    "Logical Reasoning": 5,
+    "Analytical Thinking": 5,
+    "Problem Solving": 5,
+    "Research Skills": 5,
+    "Numerical Ability": 5,
+    "Innovation": 5,
+    "Learning Ability": 5,
+    "Digital Literacy": 4
+  },
+  "Lead Data Scientist": {
+    "Analytical Thinking": 5,
+    "Numerical Ability": 5,
+    "Research Skills": 5,
+    "Problem Solving": 5,
+    "Attention to Detail": 5,
+    "Logical Reasoning": 5,
+    "Learning Ability": 4
+  },
+  "Information Security Director": {
+    "Attention to Detail": 5,
+    "Problem Solving": 5,
+    "Responsibility": 5,
+    "Analytical Thinking": 5,
+    "Digital Literacy": 5,
+    "Stress Management": 5
+  },
+  "Medical Director / Specialist": {
+    "Empathy": 5,
+    "Communication": 5,
+    "Responsibility": 5,
+    "Stress Management": 5,
+    "Learning Ability": 5,
+    "Leadership": 5
+  },
+  "Clinical Psychologist": {
+    "Empathy": 5,
+    "Communication": 5,
+    "Research Skills": 4,
+    "Patience": 5,
+    "Analytical Thinking": 3
+  },
+  "Academic Dean / Professor": {
+    "Communication": 5,
+    "Leadership": 5,
+    "Empathy": 5,
+    "Learning Ability": 5,
+    "Planning": 5
+  },
+  "Corporate Counsel / Partner": {
+    "Communication": 5,
+    "Leadership": 5,
+    "Decision Making": 5,
+    "Analytical Thinking": 5,
+    "Research Skills": 4
+  },
+  "Technology Entrepreneur / CEO": {
+    "Leadership": 5,
+    "Creativity": 5,
+    "Innovation": 5,
+    "Decision Making": 5,
+    "Risk Taking": 5,
+    "Communication": 5
+  },
+  "Financial Director / CFO": {
+    "Numerical Ability": 5,
+    "Attention to Detail": 5,
+    "Responsibility": 5,
+    "Planning": 5,
+    "Analytical Thinking": 5
+  }
+}

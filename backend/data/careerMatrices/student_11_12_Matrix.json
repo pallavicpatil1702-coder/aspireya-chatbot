@@ -1,0 +1,80 @@
+{
+  "Computer Science & Software": {
+    "Logical Reasoning": 5,
+    "Analytical Thinking": 5,
+    "Problem Solving": 5,
+    "Learning Ability": 5,
+    "Digital Literacy": 5,
+    "Planning": 4,
+    "Attention to Detail": 4,
+    "Innovation": 3
+  },
+  "Artificial Intelligence & Data Science": {
+    "Logical Reasoning": 5,
+    "Analytical Thinking": 5,
+    "Problem Solving": 5,
+    "Learning Ability": 5,
+    "Numerical Ability": 5,
+    "Research Skills": 5,
+    "Innovation": 4,
+    "Digital Literacy": 4
+  },
+  "Medicine & Surgery (MBBS)": {
+    "Empathy": 5,
+    "Communication": 5,
+    "Responsibility": 5,
+    "Stress Management": 5,
+    "Learning Ability": 5,
+    "Attention to Detail": 5
+  },
+  "Psychology & Behavioral Science": {
+    "Empathy": 5,
+    "Communication": 5,
+    "Research Skills": 4,
+    "Patience": 5,
+    "Analytical Thinking": 3
+  },
+  "Business Management (BBA)": {
+    "Leadership": 5,
+    "Creativity": 4,
+    "Innovation": 4,
+    "Decision Making": 5,
+    "Communication": 5,
+    "Planning": 4
+  },
+  "Finance & Accounting (BCom/CA)": {
+    "Numerical Ability": 5,
+    "Attention to Detail": 5,
+    "Responsibility": 5,
+    "Planning": 5,
+    "Analytical Thinking": 4
+  },
+  "Law & Legal Studies (BA LLB)": {
+    "Communication": 5,
+    "Leadership": 5,
+    "Decision Making": 5,
+    "Analytical Thinking": 5,
+    "Research Skills": 5
+  },
+  "Design & UI/UX": {
+    "Creativity": 5,
+    "Innovation": 5,
+    "Digital Literacy": 5,
+    "Attention to Detail": 4,
+    "Communication": 4
+  },
+  "Pure Science & Research": {
+    "Research Skills": 5,
+    "Analytical Thinking": 5,
+    "Logical Reasoning": 5,
+    "Learning Ability": 5,
+    "Patience": 4
+  },
+  "Teaching & Education": {
+    "Communication": 5,
+    "Leadership": 4,
+    "Empathy": 5,
+    "Learning Ability": 5,
+    "Planning": 4
+  }
+}

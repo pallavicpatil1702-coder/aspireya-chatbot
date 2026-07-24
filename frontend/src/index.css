@@ -1,0 +1,92 @@
+/* Global Color Tokens Design System */
+:root {
+  --color-primary: #17275B;          /* Primary Navy */
+  --color-primary-hover: #101C45;    /* Primary Hover */
+  --color-background: #F8F8FB;       /* Global Page Background */
+  --color-surface: #FFFFFF;          /* Card / Modal Surface */
+  --color-border: #E8ECF4;           /* Dividers / Borders */
+  --color-text-primary: #0F172A;     /* Primary Text */
+  --color-text-secondary: #5E6475;   /* Secondary Text */
+
+  /* Gradient Accent Stops */
+  --color-accent-1: #FF6B3D;
+  --color-accent-2: #FF4D7D;
+  --color-accent-3: #A63FE6;
+  --color-accent-gradient: linear-gradient(135deg, var(--color-accent-1) 0%, var(--color-accent-2) 50%, var(--color-accent-3) 100%);
+  
+  /* Semantic Colors */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+}
+
+/* Override legacy color classes to map to the new Aspireya branding */
+.text-indigo-600,
+.text-indigo-700,
+.text-indigo-800,
+.text-indigo-900,
+.text-indigo-950,
+.text-indigo-500 {
+  color: var(--color-primary) !important;
+}
+
+.bg-indigo-50,
+.bg-indigo-100,
+.bg-indigo-50\/40,
+.bg-indigo-50\/80 {
+  background-color: rgba(23, 39, 91, 0.06) !important;
+}
+
+.border-indigo-100\/50,
+.border-indigo-100\/40,
+.border-indigo-200\/60,
+.border-indigo-100 {
+  border-color: var(--color-border) !important;
+}
+
+/* Base resets and defaults */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Premium Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(243, 244, 246, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(23, 39, 91, 0.15); /* Soft navy scrollbar */
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(23, 39, 91, 0.35);
+}
+
+/* Base selection color */
+::selection {
+  background: rgba(23, 39, 91, 0.15);
+  color: var(--color-primary);
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+}

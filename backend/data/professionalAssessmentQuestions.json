@@ -1,0 +1,1063 @@
+[
+  {
+    "id": 1,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I enjoy defining system architectures, analyzing performance bottlenecks, and designing complex software platforms.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Software Architect": 5,
+      "AI / ML Research Lead": 4,
+      "Lead Data Scientist": 3
+    }
+  },
+  {
+    "id": 2,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I am interested in researching deep neural networks, model optimization, and artificial intelligence deployment.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "AI / ML Research Lead": 5,
+      "Lead Data Scientist": 5,
+      "Software Architect": 3
+    }
+  },
+  {
+    "id": 3,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I enjoy auditing computer networks, designing firewalls, and investigating potential security incidents.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Information Security Director": 5,
+      "Software Architect": 4,
+      "AI / ML Research Lead": 3
+    }
+  },
+  {
+    "id": 4,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I enjoy analyzing large databases, training predictive algorithms, and translating analytics into business strategies.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Lead Data Scientist": 5,
+      "Financial Director / CFO": 4,
+      "Software Architect": 3
+    }
+  },
+  {
+    "id": 5,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I am interested in clinical medicine, hospital administration, and coordinating specialist physician teams.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Medical Director / Specialist": 5,
+      "Clinical Psychologist": 3,
+      "Academic Dean / Professor": 2
+    }
+  },
+  {
+    "id": 6,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I enjoy practicing clinical psychotherapy, diagnosing cognitive conditions, and guiding rehabilitation programs.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Clinical Psychologist": 5,
+      "Medical Director / Specialist": 3,
+      "Academic Dean / Professor": 3,
+      "Corporate Counsel / Partner": 2
+    }
+  },
+  {
+    "id": 7,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I find it fulfilling to lecture at universities, coordinate academic research, and draft reference textbooks.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Academic Dean / Professor": 5,
+      "Clinical Psychologist": 3,
+      "Medical Director / Specialist": 3
+    }
+  },
+  {
+    "id": 8,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I enjoy analyzing complex corporate contracts, managing compliance audits, and representing entities in legal disputes.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Corporate Counsel / Partner": 5,
+      "Technology Entrepreneur / CEO": 3,
+      "Financial Director / CFO": 3
+    }
+  },
+  {
+    "id": 9,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I am motivated by launching startups, securing venture investments, and formulating commercialization roadmaps.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Technology Entrepreneur / CEO": 5,
+      "Software Architect": 3,
+      "Financial Director / CFO": 3,
+      "Corporate Counsel / Partner": 3
+    }
+  },
+  {
+    "id": 10,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I enjoy planning corporate budgets, analyzing cost centers, auditing accounts, and advising on investment strategies.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Financial Director / CFO": 5,
+      "Technology Entrepreneur / CEO": 3,
+      "Lead Data Scientist": 3
+    }
+  },
+  {
+    "id": 11,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I enjoy defining UI/UX patterns, conducting user research, and directing frontend design cycles.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Software Architect": 4,
+      "Technology Entrepreneur / CEO": 4,
+      "Academic Dean / Professor": 2
+    }
+  },
+  {
+    "id": 12,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I am interested in researching cutting-edge materials, physics equations, or computational algorithms.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "AI / ML Research Lead": 5,
+      "Lead Data Scientist": 4,
+      "Academic Dean / Professor": 4,
+      "Medical Director / Specialist": 3
+    }
+  },
+  {
+    "id": 13,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I enjoy leading large-scale corporate divisions, orchestrating departmental tasks, and mentoring managers.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Technology Entrepreneur / CEO": 4,
+      "Academic Dean / Professor": 4,
+      "Corporate Counsel / Partner": 4,
+      "Financial Director / CFO": 3
+    }
+  },
+  {
+    "id": 14,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": true,
+    "question": "I avoid assignments that require using software simulators, modeling programs, or digital workspaces.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {}
+  },
+  {
+    "id": 15,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": true,
+    "question": "I prefer simple administrative assignments that do not require financial analysis or legal planning.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {}
+  },
+  {
+    "id": 16,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I feel comfortable leading complex cross-functional teams and resolving operational blockages.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Leadership",
+    "careerMapping": {}
+  },
+  {
+    "id": 17,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I proactively identify when team members are close to burnout and step in to help balance their workloads.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Empathy",
+    "careerMapping": {}
+  },
+  {
+    "id": 18,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I maintain composure and patience when training new recruits, even if they learn slowly or make errors.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Patience",
+    "careerMapping": {}
+  },
+  {
+    "id": 19,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I execute crucial project decisions effectively during critical production crashes or tight client deadlines.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Stress Management",
+    "careerMapping": {}
+  },
+  {
+    "id": 20,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I evaluate decisions using analytical metrics and objective audits rather than personal biases.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Decision Making",
+    "careerMapping": {}
+  },
+  {
+    "id": 21,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I am willing to pivot business processes or adopt untested methodologies if they offer strategic growth.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Risk Taking",
+    "careerMapping": {}
+  },
+  {
+    "id": 22,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I take full responsibility for corporate outcomes when I direct a project or business unit.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Responsibility",
+    "careerMapping": {}
+  },
+  {
+    "id": 23,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I adjust strategies smoothly when regulatory guidelines or market conditions shift unexpectedly.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Adaptability",
+    "careerMapping": {}
+  },
+  {
+    "id": 24,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I build productive collaborations with multi-disciplinary stakeholders across divisions.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Teamwork",
+    "careerMapping": {}
+  },
+  {
+    "id": 25,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I routinely explore industrial journals and patents to identify next-generation methodologies.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Curiosity",
+    "careerMapping": {}
+  },
+  {
+    "id": 26,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I explain complex technical or commercial concepts clearly to executive committees.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Communication",
+    "careerMapping": {}
+  },
+  {
+    "id": 27,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I maintain concentration and composure when negotiations stall or when project returns are delayed.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Patience",
+    "careerMapping": {}
+  },
+  {
+    "id": 28,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I can balance corporate strategies, audit reviews, and client requests without losing efficiency.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Stress Management",
+    "careerMapping": {}
+  },
+  {
+    "id": 29,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": true,
+    "question": "I prefer working on technical tasks individually rather than coordinating divisions or steering discussions.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Leadership",
+    "careerMapping": {}
+  },
+  {
+    "id": 30,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": true,
+    "question": "I deflect accountability to other departments when corporate reports or product cycles fail.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Responsibility",
+    "careerMapping": {}
+  },
+  {
+    "id": 31,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I learn complex system parameters much faster when I can experiment with live deployment models.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Learning Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 32,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I prefer reviewing corporate papers, patents, and system manuals to understand workflows.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Research Skills",
+    "careerMapping": {}
+  },
+  {
+    "id": 33,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I find visual system design diagrams, logic flows, and video mockups essential when learning new architecture.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Learning Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 34,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I prefer learning new business models through actual industrial audits rather than hypothetical models.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Learning Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 35,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I learn best by completing training programs and testing new interfaces independently without supervision.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Independent Work",
+    "careerMapping": {}
+  },
+  {
+    "id": 36,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I learn and digest complex project guidelines much better when reviewing them in stakeholder discussions.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Teamwork",
+    "careerMapping": {}
+  },
+  {
+    "id": 37,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I evaluate different database architectures and system benchmarks before adopting a platform.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Research Skills",
+    "careerMapping": {}
+  },
+  {
+    "id": 38,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I master new administrative systems by testing configurations directly on a staging environment.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Learning Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 39,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I focus heavily on code patterns, variable scopes, and database schemas when studying a system.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Attention to Detail",
+    "careerMapping": {}
+  },
+  {
+    "id": 40,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I pick up corporate software interfaces, metrics tools, and cloud platforms with minimal orientation.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Digital Literacy",
+    "careerMapping": {}
+  },
+  {
+    "id": 41,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I consolidate my technical understanding by writing architectural documentation or guide notes for junior developers.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Learning Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 42,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I analyze case reviews of past corporate product failures to identify patterns and refine my strategies.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Research Skills",
+    "careerMapping": {}
+  },
+  {
+    "id": 43,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I prefer structured training schedules with exact certifications over unstructured exploration.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Attention to Detail",
+    "careerMapping": {}
+  },
+  {
+    "id": 44,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": true,
+    "question": "I avoid learning new technical frameworks unless they are immediately required for active projects.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Learning Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 45,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": true,
+    "question": "I skip reading manuals or system update logs, relying entirely on teammate walkthroughs.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Research Skills",
+    "careerMapping": {}
+  },
+  {
+    "id": 46,
+    "section": "Skills & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "If all systems with high availability use microservices, and some microservice setups use containerization, which of the following is logically guaranteed?",
+    "options": [
+      "All high availability systems use containerization",
+      "Some high availability systems use containerization",
+      "Some microservice setups are high availability systems",
+      "No high availability systems use containerization"
+    ],
+    "correctAnswer": "Some microservice setups are high availability systems",
+    "trait": "Logical Reasoning",
+    "careerMapping": {}
+  },
+  {
+    "id": 47,
+    "section": "Skills & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "A production line completes 2/5 of an order in 10 hours. If the order volume is doubled, how many total hours will it take to finish the order?",
+    "options": ["25 hours", "40 hours", "50 hours", "60 hours"],
+    "correctAnswer": "50 hours",
+    "trait": "Numerical Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 48,
+    "section": "Skills & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "Which value completes the logical progression in the series: 3, 7, 15, 31, 63, ?",
+    "options": ["119", "121", "127", "131"],
+    "correctAnswer": "127",
+    "trait": "Logical Reasoning",
+    "careerMapping": {}
+  },
+  {
+    "id": 49,
+    "section": "Skills & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "Four databases (P, Q, R, S) are ranked by search speed. P is faster than Q. R is faster than P. S is slower than Q. Which database has the third highest speed?",
+    "options": ["P", "Q", "R", "S"],
+    "correctAnswer": "Q",
+    "trait": "Analytical Thinking",
+    "careerMapping": {}
+  },
+  {
+    "id": 50,
+    "section": "Skills & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "An investment firm must choose an asset. Asset A has an 80% chance of returning ₹2,000,000. Asset B has a 50% chance of returning ₹3,500,000. Asset C has a 30% chance of returning ₹6,000,000. Which asset has the highest expected return?",
+    "options": ["Asset A", "Asset B", "Asset C", "Asset A and B are equal"],
+    "correctAnswer": "Asset C",
+    "trait": "Problem Solving",
+    "careerMapping": {}
+  },
+  {
+    "id": 51,
+    "section": "Skills & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "A business review states: 'Organizations that invest in AI always increase operational efficiency.' Which fact weakens this claim?",
+    "options": [
+      "Many non-AI organizations improve operational efficiency.",
+      "Some AI-investing organizations show no changes in operational efficiency.",
+      "AI setup requires significant capital investment.",
+      "AI models are difficult to train."
+    ],
+    "correctAnswer": "Some AI-investing organizations show no changes in operational efficiency.",
+    "trait": "Analytical Thinking",
+    "careerMapping": {}
+  },
+  {
+    "id": 52,
+    "section": "Skills & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "In a certain code, COMPLIANCE is written as DPNQMJBODF. How is SECURITIES written in that code?",
+    "options": ["TFDVSJUJFT", "TFDVSJUIFT", "TFDVSJUTFT", "TFDVSJUJUT"],
+    "correctAnswer": "TFDVSJUJFT",
+    "trait": "Attention to Detail",
+    "careerMapping": {}
+  },
+  {
+    "id": 53,
+    "section": "Skills & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "A security patrol circles the building every 15 minutes. A researcher leaves the lobby 4 minutes after a patrol. How long does the researcher wait for the next patrol?",
+    "options": ["9 minutes", "11 minutes", "13 minutes", "15 minutes"],
+    "correctAnswer": "11 minutes",
+    "trait": "Numerical Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 54,
+    "section": "Skills & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "If day before yesterday was Thursday, what day will it be 100 days from today?",
+    "options": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+    "correctAnswer": "Monday",
+    "trait": "Logical Reasoning",
+    "careerMapping": {}
+  },
+  {
+    "id": 55,
+    "section": "Skills & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "Three data warehouses store server backups. Warehouse X stores double the volume of Warehouse Y. Warehouse Z stores half the volume of Warehouse Y. If the total volume is 70 terabytes, how much does Warehouse Y store?",
+    "options": ["15 terabytes", "20 terabytes", "25 terabytes", "30 terabytes"],
+    "correctAnswer": "20 terabytes",
+    "trait": "Analytical Thinking",
+    "careerMapping": {}
+  },
+  {
+    "id": 56,
+    "section": "Skills & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "An audit reveals that departments with ergonomic chairs show fewer medical leaves. To prove ergonomic chairs are the direct cause, which factor must be controlled?",
+    "options": [
+      "The exact color of the chairs",
+      "The employees' prior health history and age distribution",
+      "The chair brands",
+      "The desk dimensions"
+    ],
+    "correctAnswer": "The employees' prior health history and age distribution",
+    "trait": "Logical Reasoning",
+    "careerMapping": {}
+  },
+  {
+    "id": 57,
+    "section": "Skills & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "You have a 5-liter container and a 12-liter container. There is an unlimited water supply. What is the minimum steps to measure exactly 9 liters of water?",
+    "options": ["4 steps", "5 steps", "6 steps", "8 steps"],
+    "correctAnswer": "6 steps",
+    "trait": "Problem Solving",
+    "careerMapping": {}
+  },
+  {
+    "id": 58,
+    "section": "Skills & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "In a department of 60 employees, 35 know Python, 30 know SQL, and 15 know both. How many know neither Python nor SQL?",
+    "options": ["5", "8", "10", "12"],
+    "correctAnswer": "10",
+    "trait": "Logical Reasoning",
+    "careerMapping": {}
+  },
+  {
+    "id": 59,
+    "section": "Skills & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "The average output of 6 servers is 80 units. If a new high-performance server is added, the average output becomes 83 units. What is the output of the new server?",
+    "options": ["95 units", "98 units", "101 units", "104 units"],
+    "correctAnswer": "101 units",
+    "trait": "Numerical Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 60,
+    "section": "Skills & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "You need to print product brochures. Publisher A charges ₹500 setup fee plus ₹2 per brochure. Publisher B charges ₹6 flat per brochure. At how many brochures does Publisher A become cheaper?",
+    "options": ["120 brochures", "125 brochures", "126 brochures", "130 brochures"],
+    "correctAnswer": "126 brochures",
+    "trait": "Problem Solving",
+    "careerMapping": {}
+  },
+  {
+    "id": 61,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "I am motivated by work cultures that allow me to develop original architectures and experiment with new technologies.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Innovation",
+    "careerMapping": {}
+  },
+  {
+    "id": 62,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "It is critical that my professional assignments work toward solving real-world social problems.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Empathy",
+    "careerMapping": {}
+  },
+  {
+    "id": 63,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "I feel a strong sense of achievement when I lead a team through a complex crisis successfully.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Responsibility",
+    "careerMapping": {}
+  },
+  {
+    "id": 64,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "I perform best in organizations with clear, structured hierarchies and standardized review processes.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Planning",
+    "careerMapping": {}
+  },
+  {
+    "id": 65,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "I am motivated to take on projects that require me to master new platforms and cloud architectures.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Learning Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 66,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "I actively prioritize roles that guarantee clear boundaries between professional duties and personal time.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Stress Management",
+    "careerMapping": {}
+  },
+  {
+    "id": 67,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "I value corporate entities that maintain strict compliance standards and ethical transparency above profit.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Responsibility",
+    "careerMapping": {}
+  },
+  {
+    "id": 68,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "I find collaborative, cross-functional project environments much more motivating than individual tasks.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Communication",
+    "careerMapping": {}
+  },
+  {
+    "id": 69,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "I am motivated by roles that offer clear promotions, title advancements, and executive responsibilities.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Leadership",
+    "careerMapping": {}
+  },
+  {
+    "id": 70,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "I prefer a secure, long-term employment track over high-risk startup initiatives.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Patience",
+    "careerMapping": {}
+  },
+  {
+    "id": 71,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "Having the freedom to conceptualize, design, and direct aesthetic UI patterns is key to my job satisfaction.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Creativity",
+    "careerMapping": {}
+  },
+  {
+    "id": 72,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "I enjoy auditing systems and tweaking configurations until they operate with zero errors.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Attention to Detail",
+    "careerMapping": {}
+  },
+  {
+    "id": 73,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "I am motivated to join early-stage startups and take on significant commercial risks for high returns.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Risk Taking",
+    "careerMapping": {}
+  },
+  {
+    "id": 74,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": true,
+    "question": "I prefer routine technical operations over designing original architectures or processes.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Innovation",
+    "careerMapping": {}
+  },
+  {
+    "id": 75,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": true,
+    "question": "I feel uncomfortable when I am held solely responsible for the financial success or failure of a commercial unit.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Responsibility",
+    "careerMapping": {}
+  },
+  {
+    "id": 76,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I have mapped out potential professional tracks, certification targets, and specialized growth milestones.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Planning",
+    "careerMapping": {}
+  },
+  {
+    "id": 77,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I actively research what new framework releases, cloud systems, or database engines are popular in my industry.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Digital Literacy",
+    "careerMapping": {}
+  },
+  {
+    "id": 78,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I am comfortable utilizing AI tools to optimize server scripts, generate test parameters, or drafts reports.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Learning Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 79,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I regularly dedicate hours each week to practicing technical skills outside my direct job description.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Learning Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 80,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I feel confident in my ability to transition to adjacent industrial sectors if my core field declines.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Adaptability",
+    "careerMapping": {}
+  },
+  {
+    "id": 81,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I proactively seek stakeholder reviews on my system diagrams to identify structural weaknesses.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Learning Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 82,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I can present technical architectures and project proposals confidently to stakeholders.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Communication",
+    "careerMapping": {}
+  },
+  {
+    "id": 83,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I attend industrial conventions, read trade journals, and connect with mentors to explore future roles.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Research Skills",
+    "careerMapping": {}
+  },
+  {
+    "id": 84,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I coordinate smoothly with global, remote, or hybrid teams using online databases and channels.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Teamwork",
+    "careerMapping": {}
+  },
+  {
+    "id": 85,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I feel prepared to guide teams through open-ended technical hurdles that do not have existing templates.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Problem Solving",
+    "careerMapping": {}
+  },
+  {
+    "id": 86,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I set quarterly performance targets for my career progression and track my results.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Planning",
+    "careerMapping": {}
+  },
+  {
+    "id": 87,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I am confident I can master and deploy a new cloud database framework with minimal orientation.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Digital Literacy",
+    "careerMapping": {}
+  },
+  {
+    "id": 88,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I actively look for roles outside my comfort zone to stretch my technical and managerial skills.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Learning Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 89,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": true,
+    "question": "I prefer to wait for assignment requests rather than drafting long-term professional development goals.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Planning",
+    "careerMapping": {}
+  },
+  {
+    "id": 90,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": true,
+    "question": "I experience significant stress when database environments or operational routines change suddenly.",
+    "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+    "correctAnswer": null,
+    "trait": "Adaptability",
+    "careerMapping": {}
+  }
+]

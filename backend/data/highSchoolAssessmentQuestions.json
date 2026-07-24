@@ -1,0 +1,1576 @@
+[
+  {
+    "id": 1,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I enjoy drawing visual layouts, sketches, vector artwork, or creative designs for posters.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Design & UI/UX": 5,
+      "Computer Science & Software": 2
+    }
+  },
+  {
+    "id": 2,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I like solving mathematical puzzles, logic riddles, playing chess, or identifying numerical patterns.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Computer Science & Software": 4,
+      "Artificial Intelligence & Data Science": 5,
+      "Pure Science & Research": 3
+    }
+  },
+  {
+    "id": 3,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I am interested in learning about human anatomy, biological processes, diseases, and healthcare setups.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Medicine & Surgery (MBBS)": 5,
+      "Pure Science & Research": 3,
+      "Psychology & Behavioral Science": 2
+    }
+  },
+  {
+    "id": 4,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I enjoy understanding why people behave the way they do, listening to classmates' problems, and helping them.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Psychology & Behavioral Science": 5,
+      "Teaching & Education": 3,
+      "Medicine & Surgery (MBBS)": 2
+    }
+  },
+  {
+    "id": 5,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I find it exciting to organize school celebrations, direct sports committees, or lead student clubs.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Business Management (BBA)": 5,
+      "Finance & Accounting (BCom/CA)": 2,
+      "Law & Legal Studies (BA LLB)": 2
+    }
+  },
+  {
+    "id": 6,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I enjoy managing my pocket money budget, calculating costs, and studying simple investment options.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Finance & Accounting (BCom/CA)": 5,
+      "Business Management (BBA)": 3,
+      "Law & Legal Studies (BA LLB)": 2
+    }
+  },
+  {
+    "id": 7,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I like participating in school debate panels, discussing civic rules, or studying constitutional history.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Law & Legal Studies (BA LLB)": 5,
+      "Business Management (BBA)": 2,
+      "Teaching & Education": 3
+    }
+  },
+  {
+    "id": 8,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I love tinkering with computer applications, exploring how new apps work, or trying out basic block coding.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Computer Science & Software": 5,
+      "Artificial Intelligence & Data Science": 4,
+      "Design & UI/UX": 3
+    }
+  },
+  {
+    "id": 9,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I enjoy performing experiments in physics or chemistry labs and writing scientific logs.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Pure Science & Research": 5,
+      "Medicine & Surgery (MBBS)": 3,
+      "Artificial Intelligence & Data Science": 2
+    }
+  },
+  {
+    "id": 10,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I find it rewarding to tutor classmates, explain hard subjects, or compile review notes for others.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Teaching & Education": 5,
+      "Psychology & Behavioral Science": 3,
+      "Law & Legal Studies (BA LLB)": 2
+    }
+  },
+  {
+    "id": 11,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I am interested in learning about digital privacy, online data security, and safeguarding school databases.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Computer Science & Software": 4,
+      "Artificial Intelligence & Data Science": 3,
+      "Design & UI/UX": 2
+    }
+  },
+  {
+    "id": 12,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I enjoy comparing banking interest rates, calculating profits, and studying how startup founders raise money.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Finance & Accounting (BCom/CA)": 5,
+      "Business Management (BBA)": 4,
+      "Design & UI/UX": 2
+    }
+  },
+  {
+    "id": 13,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": false,
+    "question": "I like creating hand-drawn illustrations, editing photographs, and formatting homework presentations beautifully.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Design & UI/UX": 5,
+      "Teaching & Education": 3,
+      "Psychology & Behavioral Science": 2
+    }
+  },
+  {
+    "id": 14,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": true,
+    "question": "I dislike reading about scientific achievements, space discoveries, or technological innovations.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Pure Science & Research": 5,
+      "Artificial Intelligence & Data Science": 4,
+      "Computer Science & Software": 3
+    }
+  },
+  {
+    "id": 15,
+    "section": "Career Interests",
+    "type": "likert",
+    "reverse": true,
+    "question": "I avoid tasks that require calculating margins, auditing finances, or reading statistics.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": null,
+    "careerMapping": {
+      "Finance & Accounting (BCom/CA)": 5,
+      "Business Management (BBA)": 3,
+      "Artificial Intelligence & Data Science": 2
+    }
+  },
+  {
+    "id": 16,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I feel comfortable leading study groups and organizing subject reviews for my classmates.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Leadership",
+    "careerMapping": {}
+  },
+  {
+    "id": 17,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I easily sense if a classmate is distressed and offer my help or comfort.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Empathy",
+    "careerMapping": {}
+  },
+  {
+    "id": 18,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I remain calm and helpful when explaining difficult study material to my friends.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Patience",
+    "careerMapping": {}
+  },
+  {
+    "id": 19,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I stay focused and continue preparing when exam dates draw near and class pressure builds.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Stress Management",
+    "careerMapping": {}
+  },
+  {
+    "id": 20,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I sort out disputes among study group members by relying on verified facts rather than taking sides.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Decision Making",
+    "careerMapping": {}
+  },
+  {
+    "id": 21,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I enjoy taking on difficult optional school challenges, even if I might get a low score.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Risk Taking",
+    "careerMapping": {}
+  },
+  {
+    "id": 22,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I make sure my portion of group homework projects is completed and submitted on time.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Responsibility",
+    "careerMapping": {}
+  },
+  {
+    "id": 23,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I stay positive and adapt easily when school schedules, classes, or test formats are adjusted.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Adaptability",
+    "careerMapping": {}
+  },
+  {
+    "id": 24,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I work productively in class projects alongside students from other streams.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Teamwork",
+    "careerMapping": {}
+  },
+  {
+    "id": 25,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I regularly lookup additional articles about historical discoveries or new technologies on my own.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Curiosity",
+    "careerMapping": {}
+  },
+  {
+    "id": 26,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I present my answers, ideas, and projects clearly when speaking in front of my class.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Communication",
+    "careerMapping": {}
+  },
+  {
+    "id": 27,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I remain calm and persistent when complex equations or computer tools require multiple attempts.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Patience",
+    "careerMapping": {}
+  },
+  {
+    "id": 28,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": false,
+    "question": "I manage my study tasks systematically when multiple tests fall in the same week.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Stress Management",
+    "careerMapping": {}
+  },
+  {
+    "id": 29,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": true,
+    "question": "I prefer when other classmates direct class activities or guide project teams.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Leadership",
+    "careerMapping": {}
+  },
+  {
+    "id": 30,
+    "section": "Personality",
+    "type": "likert",
+    "reverse": true,
+    "question": "I blame team members or heavy homework schedules when my project parts are incomplete.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Responsibility",
+    "careerMapping": {}
+  },
+  {
+    "id": 31,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I understand formulas and theories much better after building visual models or doing practical lab work.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Learning Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 32,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I prefer reading reference guidebooks and looking up study articles online to prepare for assessments.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Research Skills",
+    "careerMapping": {}
+  },
+  {
+    "id": 33,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I find visual slides, graph sheets, and educational diagrams essential for memorizing topics.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Learning Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 34,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I grasp difficult theories much faster when they are linked to real-world examples.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Learning Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 35,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I prefer completing online course lessons and working on school files at my own pace independently.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Independent Work",
+    "careerMapping": {}
+  },
+  {
+    "id": 36,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I prefer discussing and clarifying difficult subjects with a group of study friends.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Teamwork",
+    "careerMapping": {}
+  },
+  {
+    "id": 37,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I like checking different textbook solutions to verify which explanation is best.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Research Skills",
+    "careerMapping": {}
+  },
+  {
+    "id": 38,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I understand parameters in labs or coding blocks best by testing changes first-hand.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Learning Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 39,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I focus carefully on mathematical symbols, index definitions, and grammar when reading notes.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Attention to Detail",
+    "careerMapping": {}
+  },
+  {
+    "id": 40,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I easily adapt to digital calculators, graph tools, and online test platforms.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Digital Literacy",
+    "careerMapping": {}
+  },
+  {
+    "id": 41,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I like explaining concepts to classmates to verify my own understanding.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Learning Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 42,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I research past board examination questions to customize my study preparations.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Research Skills",
+    "careerMapping": {}
+  },
+  {
+    "id": 43,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": false,
+    "question": "I prefer structured study routines and fixed timetables over flexible daily schedules.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Attention to Detail",
+    "careerMapping": {}
+  },
+  {
+    "id": 44,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": true,
+    "question": "I feel unmotivated to study concepts that will not appear in the final exam papers.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Learning Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 45,
+    "section": "Learning Style",
+    "type": "likert",
+    "reverse": true,
+    "question": "I avoid checking encyclopedias or dictionary logs, relying only on classroom notes.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Research Skills",
+    "careerMapping": {}
+  },
+  {
+    "id": 46,
+    "section": "Academic Strengths & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "If all science students study math, and some math students study logic, which of the following is logically guaranteed?",
+    "options": [
+      "All science students study logic",
+      "Some science students study logic",
+      "Some logic students are math students",
+      "No science students study logic"
+    ],
+    "correctAnswer": "Some logic students are math students",
+    "trait": "Logical Reasoning",
+    "careerMapping": {}
+  },
+  {
+    "id": 47,
+    "section": "Academic Strengths & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "A train covers 240 km in 4 hours. At this speed, how many kilometers will it cover in 6 hours?",
+    "options": [
+      "300 km",
+      "320 km",
+      "360 km",
+      "400 km"
+    ],
+    "correctAnswer": "360 km",
+    "trait": "Numerical Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 48,
+    "section": "Academic Strengths & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "Identify the value that completes the logical sequence: 2, 6, 14, 30, 62, ?",
+    "options": [
+      "120",
+      "122",
+      "126",
+      "130"
+    ],
+    "correctAnswer": "126",
+    "trait": "Logical Reasoning",
+    "careerMapping": {}
+  },
+  {
+    "id": 49,
+    "section": "Academic Strengths & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "Five students are ranked by test marks. P is ranked higher than Q. R is ranked higher than P. S is ranked lower than Q. T is ranked highest. Who has the third highest rank?",
+    "options": [
+      "P",
+      "Q",
+      "R",
+      "S"
+    ],
+    "correctAnswer": "P",
+    "trait": "Analytical Thinking",
+    "careerMapping": {}
+  },
+  {
+    "id": 50,
+    "section": "Academic Strengths & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "A school has to buy book sets. Option A has an 80% chance of returning a value of ₹200. Option B has a 50% chance of returning a value of ₹350. Option C has a 30% chance of returning a value of ₹600. Which option has the highest expected value?",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option A and B are equal"
+    ],
+    "correctAnswer": "Option C",
+    "trait": "Problem Solving",
+    "careerMapping": {}
+  },
+  {
+    "id": 51,
+    "section": "Academic Strengths & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "A study passage states: 'Every student who practices daily reading improves their analytical skills.' Which of the following statements weakens this argument?",
+    "options": [
+      "Many students improve analytical skills without daily reading.",
+      "Some students who read daily show no improvement in analytical skills.",
+      "Daily reading is hard for students to maintain.",
+      "Analytical ability is determined at birth."
+    ],
+    "correctAnswer": "Some students who read daily show no improvement in analytical skills.",
+    "trait": "Analytical Thinking",
+    "careerMapping": {}
+  },
+  {
+    "id": 52,
+    "section": "Academic Strengths & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "In a certain code, ALGEBRA is written as BMFESCB. How is PHYSICS written in that code?",
+    "options": [
+      "QIJTJDT",
+      "QIJTKDU",
+      "QIJTJDU",
+      "QIJUJDU"
+    ],
+    "correctAnswer": "QIJTJDT",
+    "trait": "Attention to Detail",
+    "careerMapping": {}
+  },
+  {
+    "id": 53,
+    "section": "Academic Strengths & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "A school bus leaves the terminal every 20 minutes. You arrive at the terminal 6 minutes after a bus left. How long must you wait for the next bus?",
+    "options": [
+      "10 minutes",
+      "12 minutes",
+      "14 minutes",
+      "20 minutes"
+    ],
+    "correctAnswer": "14 minutes",
+    "trait": "Numerical Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 54,
+    "section": "Academic Strengths & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "If yesterday was Thursday, what day of the week will it be 30 days from today?",
+    "options": [
+      "Saturday",
+      "Sunday",
+      "Monday",
+      "Tuesday"
+    ],
+    "correctAnswer": "Sunday",
+    "trait": "Logical Reasoning",
+    "careerMapping": {}
+  },
+  {
+    "id": 55,
+    "section": "Academic Strengths & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "Three sections have 70 students total. Section A has double the count of Section B. Section C has half the count of Section B. How many students are in Section B?",
+    "options": [
+      "15",
+      "20",
+      "25",
+      "30"
+    ],
+    "correctAnswer": "20",
+    "trait": "Analytical Thinking",
+    "careerMapping": {}
+  },
+  {
+    "id": 56,
+    "section": "Academic Strengths & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "An experiment shows that students using ergonomic pens report less hand fatigue. To prove these pens are the direct cause, which factor must be controlled?",
+    "options": [
+      "The color of the pens",
+      "The total time spent writing by the students",
+      "The pen brands",
+      "The desk height"
+    ],
+    "correctAnswer": "The total time spent writing by the students",
+    "trait": "Logical Reasoning",
+    "careerMapping": {}
+  },
+  {
+    "id": 57,
+    "section": "Academic Strengths & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "A water bucket can be filled using 2 taps. Tap A fills it in 10 minutes, and Tap B fills it in 15 minutes. How long will it take to fill the bucket if both taps are open together?",
+    "options": [
+      "5 minutes",
+      "6 minutes",
+      "7 minutes",
+      "8 minutes"
+    ],
+    "correctAnswer": "6 minutes",
+    "trait": "Problem Solving",
+    "careerMapping": {}
+  },
+  {
+    "id": 58,
+    "section": "Academic Strengths & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "In a class of 60 students, 35 study Science, 30 study Commerce, and 15 study both. How many students study neither Science nor Commerce?",
+    "options": [
+      "5",
+      "8",
+      "10",
+      "12"
+    ],
+    "correctAnswer": "10",
+    "trait": "Logical Reasoning",
+    "careerMapping": {}
+  },
+  {
+    "id": 59,
+    "section": "Academic Strengths & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "A student's average score across 5 tests is 80. If their 6th test score is added, the new average becomes 82. What did the student score in the 6th test?",
+    "options": [
+      "88",
+      "90",
+      "92",
+      "94"
+    ],
+    "correctAnswer": "92",
+    "trait": "Numerical Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 60,
+    "section": "Academic Strengths & Aptitude",
+    "type": "mcq",
+    "reverse": false,
+    "question": "School printing Plan A charges flat ₹100 plus ₹2 per page. Plan B charges ₹6 per page. At how many pages does printing under Plan A become cheaper?",
+    "options": [
+      "24 pages",
+      "25 pages",
+      "26 pages",
+      "30 pages"
+    ],
+    "correctAnswer": "26 pages",
+    "trait": "Problem Solving",
+    "careerMapping": {}
+  },
+  {
+    "id": 61,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "I feel motivated to study when I can choose my own essay topics and study approaches.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Innovation",
+    "careerMapping": {}
+  },
+  {
+    "id": 62,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "It is highly important to me that my future career works toward solving community or environmental issues.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Empathy",
+    "careerMapping": {}
+  },
+  {
+    "id": 63,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "I feel a strong sense of achievement when I finish a challenging optional school project.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Responsibility",
+    "careerMapping": {}
+  },
+  {
+    "id": 64,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "I perform best when my study tasks have clear guidelines and constant feedback.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Planning",
+    "careerMapping": {}
+  },
+  {
+    "id": 65,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "I look forward to learning new skills and subjects outside of standard school courses.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Learning Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 66,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "Having sufficient time for extracurricular sports and hobbies is highly important to me.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Stress Management",
+    "careerMapping": {}
+  },
+  {
+    "id": 67,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "I prefer working in school teams that emphasize honest efforts and ethical work.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Responsibility",
+    "careerMapping": {}
+  },
+  {
+    "id": 68,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "I find it motivating to participate in study groups where everyone shares thoughts.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Communication",
+    "careerMapping": {}
+  },
+  {
+    "id": 69,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "I enjoy being elected to student cabinets or class representative roles.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Leadership",
+    "careerMapping": {}
+  },
+  {
+    "id": 70,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "I prefer a predictable class routine over constant changes in syllabus or teachers.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Patience",
+    "careerMapping": {}
+  },
+  {
+    "id": 71,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "I like adding creative sketches, visual graphs, or custom styles to my homework.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Creativity",
+    "careerMapping": {}
+  },
+  {
+    "id": 72,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "I feel satisfied when my class notebooks are perfectly organized and error-free.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Attention to Detail",
+    "careerMapping": {}
+  },
+  {
+    "id": 73,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": false,
+    "question": "I am willing to prepare for highly competitive entrance examinations for high academic rewards.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Risk Taking",
+    "careerMapping": {}
+  },
+  {
+    "id": 74,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": true,
+    "question": "I prefer following standard textbooks over exploring extra reference pages.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Innovation",
+    "careerMapping": {}
+  },
+  {
+    "id": 75,
+    "section": "Values & Motivation",
+    "type": "likert",
+    "reverse": true,
+    "question": "I dislike being held personally accountable for group project marks.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Responsibility",
+    "careerMapping": {}
+  },
+  {
+    "id": 76,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I have researched different university courses, eligibility, and entrance requirements.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Planning",
+    "careerMapping": {}
+  },
+  {
+    "id": 77,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I am familiar with standard computer applications like document editors, spreadsheets, and presentation files.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Digital Literacy",
+    "careerMapping": {}
+  },
+  {
+    "id": 78,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I am interested in learning how to use digital search engines and online guides to find study files.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Learning Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 79,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I take online skill courses or certification lessons on weekends.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Learning Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 80,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I am confident I can adjust my study strategy if entrance exam requirements shift.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Adaptability",
+    "careerMapping": {}
+  },
+  {
+    "id": 81,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I ask teachers for feedback on how to improve my presentation skills.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Learning Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 82,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I feel comfortable writing email inquiries to seek course details from universities.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Communication",
+    "careerMapping": {}
+  },
+  {
+    "id": 83,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I visit education exhibitions or check official university websites to compare majors.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Research Skills",
+    "careerMapping": {}
+  },
+  {
+    "id": 84,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I collaborate with classmates using shared folders and online documents.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Teamwork",
+    "careerMapping": {}
+  },
+  {
+    "id": 85,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I feel prepared to resolve complex open-ended project questions without templates.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Problem Solving",
+    "careerMapping": {}
+  },
+  {
+    "id": 86,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I regularly write down study targets for the week and monitor my progress.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Planning",
+    "careerMapping": {}
+  },
+  {
+    "id": 87,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I feel confident learning how to use new online simulator or drawing programs on my own.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Digital Literacy",
+    "careerMapping": {}
+  },
+  {
+    "id": 88,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": false,
+    "question": "I look for opportunities to learn extra subjects that are outside my core stream.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Learning Ability",
+    "careerMapping": {}
+  },
+  {
+    "id": 89,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": true,
+    "question": "I prefer letting my parents or teachers make all my stream and college decisions.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Planning",
+    "careerMapping": {}
+  },
+  {
+    "id": 90,
+    "section": "Career Readiness",
+    "type": "likert",
+    "reverse": true,
+    "question": "I feel highly stressed when my study space or daily routine changes.",
+    "options": [
+      "Strongly Agree",
+      "Agree",
+      "Neutral",
+      "Disagree",
+      "Strongly Disagree"
+    ],
+    "correctAnswer": null,
+    "trait": "Adaptability",
+    "careerMapping": {}
+  }
+]

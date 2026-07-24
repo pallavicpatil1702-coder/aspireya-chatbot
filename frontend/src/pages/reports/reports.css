@@ -1,0 +1,385 @@
+/* ==========================================
+   ASPIREYA PREMIUM REPORT DESIGN SYSTEM
+   Vanilla CSS Styling for Assessment Reports
+   ========================================== */
+
+/* Design System Tokens */
+:root {
+  --report-font-heading: 'Montserrat', 'Outfit', sans-serif;
+  --report-font-body: 'Poppins', 'Inter', sans-serif;
+  --report-font-metrics: 'Inter', monospace;
+
+  /* Premium Color Palette */
+  --report-indigo-start: var(--color-primary);
+  --report-indigo-end: var(--color-accent-3);
+  --report-purple-grad: var(--color-accent-gradient);
+  --report-gold-accent: #d97706;
+  --report-gold-light: #fef3c7;
+  --report-gold-dark: #b45309;
+  
+  --report-emerald-accent: var(--color-success);
+  --report-emerald-light: #ecfdf5;
+  --report-rose-accent: var(--color-danger);
+  --report-rose-light: #fef2f2;
+  
+  --report-bg-canvas: var(--color-background);
+  --report-card-bg: var(--color-surface);
+  --report-card-border: var(--color-border);
+  --report-border-glow: rgba(23, 39, 91, 0.08);
+  
+  --report-text-primary: var(--color-text-primary);
+  --report-text-secondary: var(--color-text-secondary);
+  --report-text-muted: #8C92A4;
+  
+  --report-shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.03);
+  --report-shadow-md: 0 8px 30px rgba(15, 23, 42, 0.05);
+  --report-shadow-lg: 0 16px 40px rgba(23, 39, 91, 0.08);
+}
+
+/* Base Report Wrapper resets */
+.report-inner-container {
+  background-color: var(--report-bg-canvas);
+  font-family: var(--report-font-body);
+  color: var(--report-text-secondary);
+  padding: 16px;
+  line-height: 1.6;
+}
+
+/* Montserrat Headings */
+.report-heading-1,
+.report-heading-2,
+.report-heading-3,
+.report-heading-4 {
+  font-family: var(--report-font-heading);
+  color: var(--report-text-primary);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Typography Hierarchy */
+.report-heading-1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.report-heading-2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  border-bottom: 2px solid rgba(79, 70, 229, 0.08);
+  padding-bottom: 8px;
+}
+
+.report-heading-3 {
+  font-size: 1.15rem;
+}
+
+/* Number styles */
+.report-metric-number {
+  font-family: var(--report-font-metrics);
+  font-weight: 800;
+}
+
+/* Page spacing & grids */
+.report-page-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin-bottom: 32px;
+}
+
+.report-full-width {
+  grid-column: span 2;
+}
+
+/* Equal height columns on desktop */
+@media (min-width: 992px) {
+  .report-equal-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+}
+
+/* Responsive viewports */
+@media (max-width: 991px) {
+  .report-page-grid,
+  .report-equal-cols {
+    grid-template-columns: 1fr;
+  }
+  .report-full-width {
+    grid-column: span 1;
+  }
+  .report-heading-1 {
+    font-size: 1.8rem;
+  }
+}
+
+/* Glassmorphism Card Style */
+.report-card-premium {
+  background: var(--report-card-bg);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  border: 1px solid var(--report-card-border);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: var(--report-shadow-md);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.report-card-premium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: transparent;
+  transition: background 0.3s ease;
+}
+
+.report-card-premium:hover {
+  transform: translateY(-4px);
+  border-color: rgba(79, 70, 229, 0.25);
+  box-shadow: var(--report-shadow-lg);
+}
+
+.report-card-premium:hover::before {
+  background: var(--report-purple-grad);
+}
+
+/* Cover Card Design */
+.report-cover-card {
+  background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
+  border: 1.5px solid rgba(79, 70, 229, 0.12);
+  text-align: center;
+}
+
+/* Mini badges */
+.report-badge-capsule {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(79, 70, 229, 0.08);
+  color: var(--report-indigo-start);
+  padding: 6px 14px;
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: var(--report-font-heading);
+}
+
+.report-badge-gold {
+  background: var(--report-gold-light);
+  color: var(--report-gold-dark);
+}
+
+.report-badge-emerald {
+  background: var(--report-emerald-light);
+  color: var(--report-emerald-accent);
+}
+
+/* Metric capsule grids */
+.report-metrics-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .report-metrics-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.report-metric-box {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.report-metric-box:hover {
+  background: #ffffff;
+  border-color: rgba(79, 70, 229, 0.15);
+  box-shadow: var(--report-shadow-sm);
+}
+
+/* Bullet list layouts (visual lists) */
+.report-visual-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.report-visual-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #ffffff;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  box-shadow: var(--report-shadow-sm);
+}
+
+.report-visual-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  font-size: 0.8rem;
+}
+
+/* Timelines styling */
+.report-timeline-track {
+  position: relative;
+  padding-left: 24px;
+}
+
+.report-timeline-track::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--report-indigo-start), rgba(79, 70, 229, 0.1));
+}
+
+.report-timeline-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: var(--report-shadow-sm);
+}
+
+.report-timeline-card::after {
+  content: '';
+  position: absolute;
+  left: -21px;
+  top: 26px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--report-indigo-start);
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15);
+}
+
+/* DO / DON'T Checklists */
+.report-do-card {
+  background: rgba(16, 185, 129, 0.02);
+  border-left: 4px solid var(--report-emerald-accent);
+}
+
+.report-dont-card {
+  background: rgba(239, 68, 68, 0.02);
+  border-left: 4px solid var(--report-rose-accent);
+}
+
+/* Premium lock overlays */
+.report-premium-locked-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(248, 250, 252, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  z-index: 10;
+  border-radius: 24px;
+}
+
+/* Print/PDF Export Styling */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  
+  .report-inner-container {
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+  
+  .report-card-premium {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 24px !important;
+    transform: none !important;
+  }
+
+  .btn-back,
+  .report-premium-locked-overlay,
+  .upgrade-section {
+    display: none !important;
+  }
+
+  /* Force page breaks where clean */
+  .report-page-break {
+    page-break-before: always;
+    break-before: page;
+  }
+}
+
+/* Micro-animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.report-animate-fade-in {
+  animation: fadeInUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* pdf-export-mode style rules */
+body.pdf-export-mode .aspireya-floating-trigger,
+body.pdf-export-mode .aspireya-chat-window,
+body.pdf-export-mode .premium-report-toolbar,
+body.pdf-export-mode .report-nav,
+body.pdf-export-mode .branded-seal,
+body.pdf-export-mode .footer-seal,
+body.pdf-export-mode .no-print,
+body.pdf-export-mode .toast,
+body.pdf-export-mode button {
+  display: none !important;
+}
+
+body.pdf-export-mode .report-page-container {
+  padding: 0 !important;
+  background-color: #ffffff !important;
+}
+
+body.pdf-export-mode .report-wrapper {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+body.pdf-export-mode .report-inner {
+  padding: 0 !important;
+}
