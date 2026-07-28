@@ -1,0 +1,4 @@
+Name: John Doe
+Education: B.Tech Computer Science
+Skills: React, Node.js, Firebase, Gemini
+Experience: 2 years building Chatbots

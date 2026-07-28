@@ -1,5 +1,10 @@
-import { firestoreDb } from '../config/firebase.js';
+import { firestoreDb, firebaseStorage } from '../config/firebase.js';
 import { getGeminiModel } from '../config/gemini.js';
+import crypto from 'crypto';
+import { processFile } from '../services/fileProcessor.js';
+
+const FREE_MESSAGE_LIMIT = 30;
+const FREE_FILE_UPLOAD_LIMIT = 5;
 
 const SYSTEM_PROMPT = `
 You are "Aspireya AI", the official AI Career Guidance Assistant for Aspireya Consulting.
@@ -192,25 +197,127 @@ const getUserProfileContext = async (uid) => {
   return '';
 };
 
-export const getChatHistory = async (req, res) => {
+// Check if user has reports (completed assessment)
+const checkUserHasReports = async (uid) => {
+  try {
+    const userDoc = await firestoreDb.collection('users').doc(uid).get();
+    if (userDoc.exists && userDoc.data().email) {
+      const normalizedEmail = userDoc.data().email.trim().toLowerCase();
+      const reportsSnapshot = await firestoreDb.collection('reports').where('email', '==', normalizedEmail).limit(1).get();
+      if (reportsSnapshot && !reportsSnapshot.empty) {
+        return true;
+      }
+    }
+  } catch (error) {
+    console.error('Error checking user reports:', error.message);
+  }
+  return false;
+};
+
+// Migrate legacy chat to a conversation
+const migrateLegacyChat = async (uid) => {
+  try {
+    const legacyChatDoc = await firestoreDb.collection('chats').doc(uid).get();
+    if (legacyChatDoc.exists) {
+      const legacyData = legacyChatDoc.data();
+      const convId = 'legacy_' + uid;
+      
+      const checkDoc = await firestoreDb.collection('conversations').doc(convId).get();
+      if (!checkDoc.exists) {
+        const userMessageCount = (legacyData.messages || []).filter(msg => msg.sender === 'user').length;
+        
+        await firestoreDb.collection('conversations').doc(convId).set({
+          uid,
+          title: 'Legacy Chat',
+          createdAt: legacyData.lastUpdated || new Date().toISOString(),
+          updatedAt: legacyData.lastUpdated || new Date().toISOString(),
+          messageCount: userMessageCount,
+          assessmentRecommended: legacyData.assessmentRecommended || false,
+          lastMessage: 'View your previous conversation'
+        });
+        
+        await firestoreDb.collection('messages').doc(convId).set({
+          messages: legacyData.messages || []
+        });
+      }
+    }
+  } catch (error) {
+    console.error('Error migrating legacy chat:', error);
+  }
+};
+
+export const getConversations = async (req, res) => {
   const { uid } = req.user;
   try {
-    const chatDoc = await firestoreDb.collection('chats').doc(uid).get();
-    if (!chatDoc.exists) {
-      // Return the default welcome message structured history
-      const defaultHistory = {
-        messages: [
-          {
-            sender: 'ai',
-            text: `👋 Welcome to Aspireya Consulting!\n\nHello! I'm Aspireya AI, your Career Guidance Assistant.\n\nI can help you with:\n\n• Career Guidance\n• Stream Selection\n• Courses\n• Colleges\n• Entrance Exams\n• Skills\n• Higher Education\n• Career Opportunities\n\nHow can I help you today?`,
-            timestamp: new Date().toISOString()
-          }
-        ]
-      };
-      await firestoreDb.collection('chats').doc(uid).set(defaultHistory);
-      return res.json(defaultHistory);
+    // Attempt to migrate legacy chat if it exists
+    await migrateLegacyChat(uid);
+
+    const snapshot = await firestoreDb.collection('conversations')
+      .where('uid', '==', uid)
+      .get();
+    
+    let conversations = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+    
+    // Sort in memory to avoid requiring a composite index in Firestore
+    conversations.sort((a, b) => {
+      const dateA = new Date(a.updatedAt || 0).getTime();
+      const dateB = new Date(b.updatedAt || 0).getTime();
+      return dateB - dateA; // descending
+    });
+    
+    res.json(conversations);
+  } catch (error) {
+    console.error('Error fetching conversations:', error);
+    res.status(500).json({ error: 'Failed to fetch conversations' });
+  }
+};
+
+export const getChatHistory = async (req, res) => {
+  const { uid } = req.user;
+  const conversationId = req.params.conversationId;
+  
+  try {
+    const hasReports = await checkUserHasReports(uid);
+
+    if (!conversationId) {
+      // Fallback if no conversation ID provided (frontend compatibility)
+      return res.json({ messages: [], limitRemaining: hasReports ? -1 : FREE_MESSAGE_LIMIT, limitReached: false });
     }
-    res.json(chatDoc.data());
+
+    const convRef = firestoreDb.collection('conversations').doc(conversationId);
+    const convDoc = await convRef.get();
+    
+    if (!convDoc.exists || convDoc.data().uid !== uid) {
+      return res.status(404).json({ error: 'Conversation not found' });
+    }
+
+    const messagesDoc = await firestoreDb.collection('messages').doc(conversationId).get();
+    let messages = [];
+    if (messagesDoc.exists) {
+      messages = messagesDoc.data().messages || [];
+    }
+    
+    const data = convDoc.data();
+    const userMessageCount = data.messageCount || 0;
+    const limitRemaining = hasReports ? -1 : Math.max(0, FREE_MESSAGE_LIMIT - userMessageCount);
+    const limitReached = !hasReports && userMessageCount >= FREE_MESSAGE_LIMIT;
+
+    const userDoc = await firestoreDb.collection('users').doc(uid).get();
+    const fileUploadCount = userDoc.exists ? (userDoc.data().fileUploadCount || 0) : 0;
+    const uploadRemaining = hasReports ? -1 : Math.max(0, FREE_FILE_UPLOAD_LIMIT - fileUploadCount);
+    const uploadLimitReached = !hasReports && fileUploadCount >= FREE_FILE_UPLOAD_LIMIT;
+
+    res.json({ 
+      ...data, 
+      messages, 
+      limitRemaining, 
+      limitReached,
+      uploadRemaining,
+      uploadLimitReached 
+    });
   } catch (error) {
     console.error('Error in getChatHistory:', error);
     res.status(500).json({ error: 'Failed to fetch chat history' });
@@ -218,89 +325,191 @@ export const getChatHistory = async (req, res) => {
 };
 
 export const sendMessage = async (req, res) => {
-  console.log("===== SEND MESSAGE API HIT =====");
-  console.log("Request Body:", req.body);
-
   const { uid } = req.user;
-  const { message } = req.body;
+  let { message, conversationId } = req.body;
+  const file = req.file;
 
-  // Get current user data
-  const userRef = firestoreDb.collection('users').doc(uid);
-  const userDoc = await userRef.get();
-
-  const currentStage = userDoc.exists
-    ? (userDoc.data().chatStage || 'none')
-    : 'none';
-  console.log("Current Stage:", currentStage);
-
-  if (!message || message.trim() === '') {
-    return res.status(400).json({ error: 'Message content is required' });
+  if ((!message || message.trim() === '') && !file) {
+    return res.status(400).json({ error: 'Message content or file is required' });
   }
 
   try {
-    // Detect if user completed 10th or 12th
-    const lowerMessage = message.toLowerCase();
+    const userRef = firestoreDb.collection('users').doc(uid);
+    const userDoc = await userRef.get();
+    const currentStage = userDoc.exists ? (userDoc.data().chatStage || 'none') : 'none';
+    const lowerMessage = message ? message.toLowerCase() : '';
 
-    console.log("Current Stage:", currentStage);
-    console.log("Lower Message:", lowerMessage);
-
-    // 10th flow
-    if (currentStage === "none" && lowerMessage.includes("10th")) {
-      await userRef.set(
-        { chatStage: "waiting_for_subjects_10th" },
-        { merge: true }
-      );
-
-      return res.json({
-        reply:
-          "🎉 Congratulations on completing your 10th! Please tell me your top 4 highest-scoring subjects along with their marks."
+    // Ensure conversation exists
+    let isNewConversation = false;
+    if (!conversationId) {
+      conversationId = crypto.randomUUID();
+      isNewConversation = true;
+      await firestoreDb.collection('conversations').doc(conversationId).set({
+        uid,
+        title: 'New Conversation',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        messageCount: 0,
+        assessmentRecommended: false
       });
     }
 
-    // 12th flow
-    if (currentStage === "none" && lowerMessage.includes("12th")) {
-      await userRef.set(
-        { chatStage: "waiting_for_stream" },
-        { merge: true }
-      );
-
-      return res.json({
-        reply:
-          "🎉 Congratulations on completing your 12th!\nWhich stream did you study?\n• Science (PCM)\n• Science (PCB)\n• Commerce\n• Arts/Humanities\n• Other"
-      });
+    const convRef = firestoreDb.collection('conversations').doc(conversationId);
+    const convDoc = await convRef.get();
+    
+    if (!convDoc.exists || convDoc.data().uid !== uid) {
+      return res.status(404).json({ error: 'Conversation not found' });
     }
-    // 1. Fetch existing chat history
-    let chatDoc = await firestoreDb.collection('chats').doc(uid).get();
+    
+    let chatData = convDoc.data();
+
+    // Load messages
+    const messagesRef = firestoreDb.collection('messages').doc(conversationId);
+    let messagesDoc = await messagesRef.get();
     let messages = [];
-    if (chatDoc.exists) {
-      messages = chatDoc.data().messages || [];
+    
+    if (messagesDoc.exists) {
+      messages = messagesDoc.data().messages || [];
     } else {
-      // Add default welcome message first if no history
-      messages = [
-        {
-          sender: 'ai',
-          text: `👋 Welcome to Aspireya Consulting!\n\nHello! I'm Aspireya AI, your Career Guidance Assistant.\n\nI can help you with:\n\n• Career Guidance\n• Stream Selection\n• Courses\n• Colleges\n• Entrance Exams\n• Skills\n• Higher Education\n• Career Opportunities\n\nHow can I help you today?`,
-          timestamp: new Date().toISOString()
+      messages = [{
+        sender: 'ai',
+        text: `👋 Hello! I'm Aspireya AI, your Career Guidance Assistant. How can I help you today?`,
+        timestamp: new Date().toISOString()
+      }];
+    }
+    
+    // Process file if present
+    let attachmentMeta = null;
+    let extractedText = '';
+    const fileUploadCount = userDoc.exists ? (userDoc.data().fileUploadCount || 0) : 0;
+    const hasReports = await checkUserHasReports(uid);
+
+    if (file) {
+      if (!hasReports && fileUploadCount >= FREE_FILE_UPLOAD_LIMIT) {
+        return res.json({
+          uploadLimitReached: true,
+          uploadRemaining: 0,
+          messages, // return existing messages
+          conversationId
+        });
+      }
+
+      try {
+        // Upload to Storage
+        if (firebaseStorage) {
+          const bucket = firebaseStorage.bucket();
+          const filename = `attachments/${uid}/${Date.now()}_${file.originalname.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
+          const fileUpload = bucket.file(filename);
+          await fileUpload.save(file.buffer, { contentType: file.mimetype });
+          try {
+            await fileUpload.makePublic();
+          } catch (e) {
+            console.warn("Could not make file public, maybe IAM restricted", e.message);
+          }
+          const url = `https://storage.googleapis.com/${bucket.name}/${filename}`;
+          attachmentMeta = {
+            name: file.originalname,
+            type: file.mimetype,
+            size: file.size,
+            url
+          };
+        } else {
+          attachmentMeta = {
+            name: file.originalname,
+            type: file.mimetype,
+            size: file.size,
+            url: null
+          };
         }
-      ];
+
+        // Extract Text for AI
+        extractedText = await processFile(file);
+      } catch (e) {
+        console.error("File processing failed:", e);
+        // Continue without extraction if failed, but keep attachmentMeta
+      }
     }
 
-    // 2. Append new user message to history
-    const userMessage = {
+    // Append user message
+    messages.push({
       sender: 'user',
-      text: message,
+      text: message || '',
+      attachment: attachmentMeta,
       timestamp: new Date().toISOString()
-    };
-    messages.push(userMessage);
+    });
 
-    // Count user messages
-    const userMessageCount = messages.filter(
-      msg => msg.sender === "user"
-    ).length;
+    const userMessageCount = (chatData.messageCount || 0) + (message && message.trim() !== '' ? 1 : 0);
+    // Note: If they ONLY uploaded a file, we can either count it as a message or just an upload.
+    // The requirement says "Track uploads per USER", we'll track the upload separately.
+    // Let's ensure the message limit logic still works.
+    
+    // We already fetched hasReports above
+    
+    const limitRemaining = hasReports ? -1 : Math.max(0, FREE_MESSAGE_LIMIT - userMessageCount);
+    const limitReached = !hasReports && userMessageCount > FREE_MESSAGE_LIMIT;
 
+    if (limitReached) {
+      messages.pop(); // Remove blocked message
+      return res.json({
+        limitReached: true,
+        limitRemaining: 0,
+        messages,
+        conversationId
+      });
+    }
 
-    const shouldSuggestAssessment =
-      userMessageCount >= 5 ||
+    // Check for hardcoded 10th / 12th flow
+    let bypassReply = null;
+    if (currentStage === "none" && lowerMessage.includes("10th")) {
+      await userRef.set({ chatStage: "waiting_for_subjects_10th" }, { merge: true });
+      bypassReply = "🎉 Congratulations on completing your 10th! Please tell me your top 4 highest-scoring subjects along with their marks.";
+    } else if (currentStage === "none" && lowerMessage.includes("12th")) {
+      await userRef.set({ chatStage: "waiting_for_stream" }, { merge: true });
+      bypassReply = "🎉 Congratulations on completing your 12th!\nWhich stream did you study?\n• Science (PCM)\n• Science (PCB)\n• Commerce\n• Arts/Humanities\n• Other";
+    }
+
+    // Title generation on first message
+    let generatedTitle = chatData.title;
+    if (userMessageCount === 1 && message) {
+      generatedTitle = message.substring(0, 30);
+      if (message.length > 30) generatedTitle += '...';
+    }
+
+    if (bypassReply) {
+      messages.push({
+        sender: 'ai',
+        text: bypassReply,
+        timestamp: new Date().toISOString()
+      });
+      await messagesRef.set({ messages });
+      await convRef.update({
+      title: generatedTitle,
+      updatedAt: new Date().toISOString(),
+      messageCount: userMessageCount,
+      lastMessage: bypassReply.substring(0, 50) + '...'
+    });
+
+    let newFileUploadCount = fileUploadCount;
+    if (file) {
+      newFileUploadCount += 1;
+      await userRef.set({ fileUploadCount: newFileUploadCount }, { merge: true });
+    }
+
+      const uploadRemaining = hasReports ? -1 : Math.max(0, FREE_FILE_UPLOAD_LIMIT - newFileUploadCount);
+
+      return res.json({
+        reply: bypassReply,
+        messages,
+        limitReached: !hasReports && userMessageCount >= FREE_MESSAGE_LIMIT,
+        limitRemaining,
+        uploadLimitReached: !hasReports && newFileUploadCount >= FREE_FILE_UPLOAD_LIMIT,
+        uploadRemaining,
+        conversationId,
+        title: generatedTitle
+      });
+    }
+
+    const isExplicitRequest =
       lowerMessage.includes("confused") ||
       lowerMessage.includes("i'm confused") ||
       lowerMessage.includes("i am confused") ||
@@ -308,13 +517,16 @@ export const sendMessage = async (req, res) => {
       lowerMessage.includes("cannot decide") ||
       lowerMessage.includes("not sure") ||
       lowerMessage.includes("which career is best") ||
-      lowerMessage.includes("personalized roadmap");
+      lowerMessage.includes("personalized roadmap") ||
+      lowerMessage.includes("career assessment") ||
+      lowerMessage.includes("assessment test");
 
-    // 3. Prepare Gemini API inputs (History mapping)
+    const alreadyRecommended = chatData.assessmentRecommended === true;
+    const shouldSuggestAssessment = isExplicitRequest || (!alreadyRecommended && userMessageCount >= 5);
+
+    // AI logic
     const geminiHistory = [];
-    // Convert previous dialogue (excluding welcome message to save tokens/keep system context clear if desired, or include it)
     messages.forEach((msg) => {
-      // Map 'ai' to 'model', 'user' to 'user' for Gemini compatibility
       const role = msg.sender === 'user' ? 'user' : 'model';
       geminiHistory.push({
         role: role,
@@ -322,64 +534,67 @@ export const sendMessage = async (req, res) => {
       });
     });
 
-    // 4. Inject System Prompt and Profile Context
     const profileContext = await getUserProfileContext(uid);
     const systemPromptWithContext = SYSTEM_PROMPT + profileContext;
 
-    // Remove the last message from geminiHistory to pass it as the active prompt with history
-    const activeUserMessage = geminiHistory.pop();
-    const promptToSend = activeUserMessage.parts[0].text;
+    // Prepare AI Prompt
+    let finalAiPrompt = message || '';
+    if (extractedText) {
+      finalAiPrompt += `\n\n[Attached File Content: ${file.originalname}]\n${extractedText}`;
+    }
 
-    // Ensure geminiHistory starts with a 'user' message as required by Gemini API
+    const activeUserMessage = geminiHistory.pop();
+    const promptToSend = finalAiPrompt;
+
     const firstUserIdx = geminiHistory.findIndex(msg => msg.role === 'user');
     const filteredHistory = firstUserIdx !== -1 ? geminiHistory.slice(firstUserIdx) : [];
 
-    // 5. Invoke Gemini Model
     const model = getGeminiModel('gemini-2.5-flash');
-
-    // We start the chat session
     const chat = model.startChat({
       history: filteredHistory,
       systemInstruction: { parts: [{ text: systemPromptWithContext }] }
     });
 
-    console.log("Creating Gemini chat...");
-
     const result = await chat.sendMessage(promptToSend);
-
-    console.log("Gemini Response Received");
-
-    const aiResponseText = result.response.text();
-
-    let finalReply = aiResponseText;
+    let finalReply = result.response.text();
 
     if (shouldSuggestAssessment) {
-      finalReply += `
-
-🎯 Take Career Assessment
-
-📅 Book Career Guidance Session
-
-A Career Assessment helps identify your strengths, interests, personality, and suitable career options. It also provides a personalized career roadmap.`;
+      finalReply += `\n\n🎯 Take Career Assessment\n\n📅 Book Career Guidance Session\n\nA Career Assessment helps identify your strengths, interests, personality, and suitable career options. It also provides a personalized career roadmap.`;
     }
 
-    // 6. Append AI response
-    const aiMessage = {
+    messages.push({
       sender: 'ai',
       text: finalReply,
       timestamp: new Date().toISOString()
-    };
-    messages.push(aiMessage);
-
-    // 7. Save updated history to Firestore
-    await firestoreDb.collection('chats').doc(uid).set({
-      messages,
-      lastUpdated: new Date().toISOString()
     });
+
+    await messagesRef.set({ messages });
+    
+    await convRef.update({
+      title: generatedTitle,
+      updatedAt: new Date().toISOString(),
+      messageCount: userMessageCount,
+      assessmentRecommended: shouldSuggestAssessment || chatData.assessmentRecommended || false,
+      lastMessage: finalReply.substring(0, 50) + '...'
+    });
+
+    let newFileUploadCount = fileUploadCount;
+    if (file && !bypassReply) {
+      newFileUploadCount += 1;
+      await userRef.set({ fileUploadCount: newFileUploadCount }, { merge: true });
+    }
+    
+    const uploadRemaining = hasReports ? -1 : Math.max(0, FREE_FILE_UPLOAD_LIMIT - newFileUploadCount);
 
     res.json({
       reply: finalReply,
-      messages
+      messages,
+      limitReached: !hasReports && userMessageCount >= FREE_MESSAGE_LIMIT,
+      limitRemaining,
+      uploadLimitReached: !hasReports && newFileUploadCount >= FREE_FILE_UPLOAD_LIMIT,
+      uploadRemaining,
+      conversationId,
+      title: generatedTitle
     });
 
   } catch (error) {
@@ -388,25 +603,85 @@ A Career Assessment helps identify your strengths, interests, personality, and s
   }
 };
 
-
 export const clearChatHistory = async (req, res) => {
   const { uid } = req.user;
+  const { conversationId } = req.params;
   try {
+    const convRef = firestoreDb.collection('conversations').doc(conversationId);
+    const convDoc = await convRef.get();
+    if (!convDoc.exists || convDoc.data().uid !== uid) {
+      return res.status(404).json({ error: 'Conversation not found' });
+    }
+
     const defaultHistory = {
-      messages: [
-        {
-          sender: 'ai',
-          text: `👋 Welcome to Aspireya Consulting!\n\nHello! I'm Aspireya AI, your Career Guidance Assistant.\n\nI can help you with:\n\n• Career Guidance\n• Stream Selection\n• Courses\n• Colleges\n• Entrance Exams\n• Skills\n• Higher Education\n• Career Opportunities\n\nHow can I help you today?`,
-          timestamp: new Date().toISOString()
-        }
-      ],
-      lastUpdated: new Date().toISOString()
+      messages: [{
+        sender: 'ai',
+        text: `👋 Hello! I'm Aspireya AI, your Career Guidance Assistant. How can I help you today?`,
+        timestamp: new Date().toISOString()
+      }]
     };
-    await firestoreDb.collection('chats').doc(uid).set(defaultHistory);
-    res.json({ message: 'Chat history cleared successfully', ...defaultHistory });
+    
+    await firestoreDb.collection('messages').doc(conversationId).set(defaultHistory);
+    
+    await convRef.update({
+      messageCount: 0,
+      assessmentRecommended: false,
+      updatedAt: new Date().toISOString(),
+      lastMessage: 'Chat cleared'
+    });
+    
+    const hasReports = await checkUserHasReports(uid);
+    const userRef = firestoreDb.collection('users').doc(uid);
+    const userDoc = await userRef.get();
+    const fileUploadCount = userDoc.exists ? (userDoc.data().fileUploadCount || 0) : 0;
+    
+    res.json({ 
+      message: 'Chat history cleared successfully', 
+      ...defaultHistory, 
+      limitReached: false, 
+      limitRemaining: hasReports ? -1 : FREE_MESSAGE_LIMIT,
+      uploadLimitReached: !hasReports && fileUploadCount >= FREE_FILE_UPLOAD_LIMIT,
+      uploadRemaining: hasReports ? -1 : Math.max(0, FREE_FILE_UPLOAD_LIMIT - fileUploadCount)
+    });
   } catch (error) {
     console.error('Error clearing chat history:', error);
     res.status(500).json({ error: 'Failed to clear chat history' });
+  }
+};
+
+export const renameConversation = async (req, res) => {
+  const { uid } = req.user;
+  const { conversationId } = req.params;
+  const { title } = req.body;
+  try {
+    const docRef = firestoreDb.collection('conversations').doc(conversationId);
+    const doc = await docRef.get();
+    if (!doc.exists || doc.data().uid !== uid) {
+      return res.status(404).json({ error: 'Conversation not found' });
+    }
+    await docRef.update({ title, updatedAt: new Date().toISOString() });
+    res.json({ message: 'Conversation renamed successfully' });
+  } catch (error) {
+    console.error('Error renaming conversation:', error);
+    res.status(500).json({ error: 'Failed to rename conversation' });
+  }
+};
+
+export const deleteConversation = async (req, res) => {
+  const { uid } = req.user;
+  const { conversationId } = req.params;
+  try {
+    const docRef = firestoreDb.collection('conversations').doc(conversationId);
+    const doc = await docRef.get();
+    if (!doc.exists || doc.data().uid !== uid) {
+      return res.status(404).json({ error: 'Conversation not found' });
+    }
+    await docRef.delete();
+    await firestoreDb.collection('messages').doc(conversationId).delete();
+    res.json({ message: 'Conversation deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting conversation:', error);
+    res.status(500).json({ error: 'Failed to delete conversation' });
   }
 };
 
@@ -449,4 +724,3 @@ export const saveUserProfile = async (req, res) => {
     res.status(500).json({ error: 'Failed to save user profile', details: error.message });
   }
 };
-

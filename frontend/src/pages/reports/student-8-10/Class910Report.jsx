@@ -85,18 +85,45 @@ const Class910Report = ({
             <Brain size={20} />
             <h3 className="report-heading-3 text-slate-800" style={{ margin: 0 }}>Stream Suggestions</h3>
           </div>
-          <div className="grid grid-cols-1 gap-4">
-            {streamSuggestions.map((st, idx) => (
-              <div key={idx} className="bg-indigo-50/40 p-4 rounded-2xl border border-indigo-100 flex flex-col gap-2 text-left">
-                <div className="flex justify-between items-center w-full">
-                  <span className="text-sm font-extrabold text-indigo-900">{st.stream}</span>
-                  <span className="text-[0.65rem] bg-indigo-100 text-indigo-800 font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
-                    Suitability: {st.suitability}
-                  </span>
+          <div className="grid grid-cols-1 gap-5 mt-2">
+            {streamSuggestions.map((st, idx) => {
+              const suitabilityLower = (st.suitability || '').toLowerCase();
+              let suitabilityColor = 'bg-slate-100 text-slate-700 border-slate-200';
+              let badgeIcon = null;
+              
+              if (suitabilityLower.includes('high') || suitabilityLower.includes('excellent')) {
+                suitabilityColor = 'bg-emerald-50 text-emerald-700 border-emerald-200';
+                badgeIcon = <Award size={12} className="mr-1" />;
+              } else if (suitabilityLower.includes('medium') || suitabilityLower.includes('moderate')) {
+                suitabilityColor = 'bg-amber-50 text-amber-700 border-amber-200';
+                badgeIcon = <Compass size={12} className="mr-1" />;
+              } else if (suitabilityLower.includes('low')) {
+                suitabilityColor = 'bg-rose-50 text-rose-700 border-rose-200';
+              }
+
+              return (
+                <div key={idx} className="relative overflow-hidden bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-300 p-5 flex flex-col gap-3 group">
+                  {/* Left gradient accent bar */}
+                  <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-indigo-500 to-purple-500 opacity-80 group-hover:opacity-100 transition-opacity"></div>
+                  
+                  <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 w-full pl-3">
+                    <h4 className="text-sm md:text-[0.95rem] font-extrabold text-slate-800 m-0 leading-tight">
+                      {st.stream}
+                    </h4>
+                    <span className={`flex items-center text-[0.65rem] font-bold px-2.5 py-1 rounded-md border uppercase tracking-wider whitespace-nowrap ${suitabilityColor}`}>
+                      {badgeIcon}
+                      Suitability: {st.suitability || 'N/A'}
+                    </span>
+                  </div>
+                  
+                  <div className="pl-3">
+                    <p className="text-[0.75rem] md:text-[0.8rem] text-slate-600 leading-relaxed m-0 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                      {st.whyItFits}
+                    </p>
+                  </div>
                 </div>
-                <p className="text-xs text-slate-700 leading-relaxed m-0">{st.whyItFits}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

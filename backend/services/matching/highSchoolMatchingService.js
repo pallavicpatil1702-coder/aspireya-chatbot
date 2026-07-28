@@ -31,6 +31,21 @@ export const matchHighSchoolCareers = (answers, questions) => {
   const careerInterests = {};
   const careerInterestsCounts = {};
 
+  const categoryScores = { "Technology": 0, "Creativity": 0, "Business": 0, "Healthcare": 0 };
+  const careerToCategoryMap = {
+    "Software Engineer": "Technology",
+    "AI Engineer": "Technology",
+    "Data Scientist": "Technology",
+    "Cyber Security Analyst": "Technology",
+    "Cyber Security": "Technology",
+    "Doctor": "Healthcare",
+    "Psychologist": "Healthcare",
+    "Teacher": "Creativity",
+    "Lawyer": "Creativity",
+    "Entrepreneur": "Business",
+    "Chartered Accountant": "Business"
+  };
+
   questions.forEach(q => {
     const answer = answerMap.get(Number(q.id));
     if (answer === undefined || answer === null) return;
@@ -45,6 +60,9 @@ export const matchHighSchoolCareers = (answers, questions) => {
         }
         careerInterests[careerName] += score * weight;
         careerInterestsCounts[careerName] += 5 * weight;
+
+        const category = careerToCategoryMap[careerName] || "Creativity";
+        categoryScores[category] += score * weight;
       });
     }
 
@@ -79,6 +97,15 @@ export const matchHighSchoolCareers = (answers, questions) => {
     }
   });
 
+  let strongestCategory = "Technology";
+  let maxCatScore = -1;
+  Object.entries(categoryScores).forEach(([cat, score]) => {
+    if (score > maxCatScore) {
+      maxCatScore = score;
+      strongestCategory = cat;
+    }
+  });
+
   const recommendations = [];
   Object.entries(careerMatrix).forEach(([careerName, requirements]) => {
     // A. Traits Compatibility
@@ -99,14 +126,42 @@ export const matchHighSchoolCareers = (answers, questions) => {
     const interestScore = maxInterest > 0 ? (actualInterest / maxInterest) * 100 : 50;
 
     // C. Combine
-    const finalMatchScore = Math.round(
-      (INTEREST_SCORE_WEIGHT * interestScore) + 
-      (TRAIT_COMPATIBILITY_WEIGHT * matrixScore)
-    );
+    const rawMatchScore = (INTEREST_SCORE_WEIGHT * interestScore) + 
+                          (TRAIT_COMPATIBILITY_WEIGHT * matrixScore);
+
+    // Widen distribution to avoid clustering in the 85-90% range
+    // Applies a 2.5x multiplier to the deficit from 100% to create better differentiation
+    const widenedScore = Math.max(0, 100 - ((100 - rawMatchScore) * 2.5));
+    const finalMatchScore = Math.round(widenedScore);
+
+    // D. Compute Trait Boost & Sort Score
+    let traitBoost = 0;
+    Object.entries(requirements).forEach(([trait, requiredLevel]) => {
+      const userLevel = userTraits[trait] || 3.0;
+      if (userLevel > 3.0 && requiredLevel >= 4) {
+        traitBoost += (userLevel - 3.0) * requiredLevel;
+      }
+      if (userLevel < 3.0 && requiredLevel >= 4) {
+        traitBoost -= (3.0 - userLevel) * requiredLevel;
+      }
+      if (userLevel < 3.0 && requiredLevel <= 2) {
+        traitBoost += (3.0 - userLevel) * (3 - requiredLevel);
+      }
+      if (userLevel > 3.0 && requiredLevel <= 2) {
+        traitBoost -= (userLevel - 3.0) * (3 - requiredLevel);
+      }
+    });
+
+    const clampedTraitBoost = Math.min(20, Math.max(-20, traitBoost));
+    const interestBoost = (interestScore - 50) * 0.02;
+    const personalityBoost = clampedTraitBoost * 0.07;
+    const totalBoost = interestBoost + personalityBoost;
+    const sortScore = finalMatchScore + totalBoost;
 
     recommendations.push({
       careerName,
       matchPercentage: Math.min(100, Math.max(0, finalMatchScore)),
+      sortScore,
       traitsAnalysis: Object.keys(requirements).reduce((acc, trait) => {
         acc[trait] = {
           required: requirements[trait],
@@ -117,7 +172,26 @@ export const matchHighSchoolCareers = (answers, questions) => {
     });
   });
 
-  recommendations.sort((a, b) => b.matchPercentage - a.matchPercentage);
+  recommendations.sort((a, b) => {
+    const sortScoreDiff = b.sortScore - a.sortScore;
+    if (Math.abs(sortScoreDiff) < 0.5) {
+      const aCategory = careerToCategoryMap[a.careerName] || "Creativity";
+      const bCategory = careerToCategoryMap[b.careerName] || "Creativity";
+
+      const aIsStrongest = (aCategory === strongestCategory);
+      const bIsStrongest = (bCategory === strongestCategory);
+
+      if (aIsStrongest && !bIsStrongest) {
+        return -1;
+      }
+      if (!aIsStrongest && bIsStrongest) {
+        return 1;
+      }
+    }
+    return sortScoreDiff;
+  });
+
+  recommendations.forEach(r => delete r.sortScore);
 
   return {
     recommendations,

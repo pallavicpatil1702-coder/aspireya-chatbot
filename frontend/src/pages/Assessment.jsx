@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -12,7 +12,9 @@ import {
   MessageSquare,
   ArrowRight,
   Loader2,
-  Check
+  Check,
+  Globe,
+  ChevronDown
 } from 'lucide-react';
 import logo from '../assets/logo.png';
 
@@ -49,6 +51,159 @@ const LIKERT_OPTIONS = [
   { value: 'Disagree', label: 'Disagree' },
   { value: 'Strongly Disagree', label: 'Strongly Disagree' }
 ];
+
+const LanguageDropdown = ({ lang, setLang }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  const itemsRef = useRef([]);
+
+  const languages = [
+    { code: 'en', label: 'English' },
+    { code: 'hi', label: 'हिन्दी' },
+    { code: 'mr', label: 'मराठी' }
+  ];
+
+  const currentLang = languages.find(l => l.code === lang) || languages[0];
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleKeyDown = (e) => {
+    if (!isOpen) {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        setIsOpen(true);
+      }
+      return;
+    }
+
+    if (e.key === 'Escape') {
+      setIsOpen(false);
+      dropdownRef.current?.querySelector('button')?.focus();
+      return;
+    }
+
+    const currentIndex = itemsRef.current.findIndex(el => el === document.activeElement);
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      const nextIndex = currentIndex < languages.length - 1 ? currentIndex + 1 : 0;
+      itemsRef.current[nextIndex]?.focus();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      const prevIndex = currentIndex > 0 ? currentIndex - 1 : languages.length - 1;
+      itemsRef.current[prevIndex]?.focus();
+    }
+  };
+
+  return (
+    <div style={{ position: 'relative' }} ref={dropdownRef} onKeyDown={handleKeyDown}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        aria-haspopup="listbox"
+        aria-expanded={isOpen}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          padding: '8px 16px',
+          backgroundColor: '#ffffff',
+          border: '1px solid #E5E7EB',
+          borderRadius: '12px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
+          cursor: 'pointer',
+          fontSize: '14px',
+          fontWeight: '500',
+          color: '#374151',
+          transition: 'all 0.2s ease',
+          outline: 'none'
+        }}
+        onFocus={(e) => e.currentTarget.style.boxShadow = '0 0 0 2px #BFDBFE'}
+        onBlur={(e) => e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.05)'}
+      >
+        <Globe size={16} color="#6B7280" />
+        {currentLang.label}
+        <ChevronDown size={16} color="#6B7280" style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s ease' }} />
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            role="listbox"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            style={{
+              position: 'absolute',
+              top: '100%',
+              right: 0,
+              marginTop: '8px',
+              backgroundColor: '#ffffff',
+              border: '1px solid #E5E7EB',
+              borderRadius: '12px',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+              overflow: 'hidden',
+              minWidth: '140px',
+              zIndex: 100
+            }}
+          >
+            {languages.map((l, index) => (
+              <button
+                key={l.code}
+                role="option"
+                aria-selected={lang === l.code}
+                ref={el => itemsRef.current[index] = el}
+                onClick={() => {
+                  setLang(l.code);
+                  setIsOpen(false);
+                  dropdownRef.current?.querySelector('button')?.focus();
+                }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  width: '100%',
+                  padding: '10px 16px',
+                  border: 'none',
+                  backgroundColor: lang === l.code ? '#EFF6FF' : 'transparent',
+                  color: lang === l.code ? '#1D4ED8' : '#374151',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  fontWeight: lang === l.code ? '600' : '400',
+                  textAlign: 'left',
+                  transition: 'background-color 0.15s ease',
+                  outline: 'none'
+                }}
+                onFocus={(e) => e.currentTarget.style.backgroundColor = '#F3F4F6'}
+                onBlur={(e) => {
+                  if (lang !== l.code) e.currentTarget.style.backgroundColor = 'transparent';
+                  else e.currentTarget.style.backgroundColor = '#EFF6FF';
+                }}
+                onMouseEnter={(e) => {
+                  if (lang !== l.code) e.currentTarget.style.backgroundColor = '#F3F4F6';
+                }}
+                onMouseLeave={(e) => {
+                  if (lang !== l.code) e.currentTarget.style.backgroundColor = 'transparent';
+                }}
+              >
+                {l.label}
+                {lang === l.code && <Check size={14} color="#1D4ED8" />}
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
 
 const Assessment = () => {
   const navigate = useNavigate();
@@ -973,6 +1128,37 @@ const Assessment = () => {
             padding: 40px;
           }
         }
+        
+        @media (max-width: 640px) {
+          .assessment-page-container {
+            padding: 12px;
+          }
+          .assessment-engine-card {
+            padding: 24px 16px;
+            border-radius: 16px;
+          }
+          .engine-header-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 24px;
+          }
+          .question-text-p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+          }
+          .option-item-btn {
+            padding: 12px 16px;
+            font-size: 0.85rem;
+          }
+          .navigation-block {
+            padding-top: 16px;
+          }
+          .btn-nav {
+            padding: 0 12px;
+            font-size: 0.82rem;
+          }
+        }
 
         .engine-header-row {
           display: flex;
@@ -1204,11 +1390,7 @@ const Assessment = () => {
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             {questions.length > 0 && typeof questions[0].question === 'object' && (
-              <div className="language-selector">
-                <button className={lang === 'en' ? 'active' : ''} onClick={() => setLang('en')}>EN</button>
-                <button className={lang === 'hi' ? 'active' : ''} onClick={() => setLang('hi')}>हिं</button>
-                <button className={lang === 'mr' ? 'active' : ''} onClick={() => setLang('mr')}>मरा</button>
-              </div>
+              <LanguageDropdown lang={lang} setLang={setLang} />
             )}
             <div className="section-badge">
               Section {sectionIndex + 1} of 6

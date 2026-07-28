@@ -4,6 +4,11 @@ import {
   Send,
   Trash2,
   Calendar,
+  PlusCircle,
+  FileText,
+  Image as ImageIcon,
+  File,
+  Paperclip,
   Compass,
   Sparkles,
   Clock,
@@ -13,9 +18,15 @@ import {
   MessageSquare,
   Minus,
   Sun,
-  Moon
+  Moon,
+  Lock,
+  Menu,
+  Plus,
+  Search,
+  Edit2,
+  MoreVertical
 } from 'lucide-react';
-import { fetchChatHistory, sendChatMessage, clearChatHistory } from '../services/api.js';
+import { fetchChatHistory, sendChatMessage, clearChatHistory, fetchConversations, renameConversation, deleteConversation } from '../services/api.js';
 import { useNavigate } from 'react-router-dom';
 import chatbotAvatar from '../assets/chatbot-avatar.png';
 import logo from '../assets/logo.png';
@@ -37,7 +48,33 @@ const CareerChatbot = ({
   const [isOpen, setIsOpen] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
   const [showTooltip, setShowTooltip] = useState(false);
+  const [limitReached, setLimitReached] = useState(false);
+  const [limitRemaining, setLimitRemaining] = useState(-1);
+  const [uploadLimitReached, setUploadLimitReached] = useState(false);
+  const [uploadRemaining, setUploadRemaining] = useState(-1);
   const [theme, setTheme] = useState(() => localStorage.getItem('aspireya_chatbot_theme') || 'light');
+  const [conversations, setConversations] = useState([]);
+  const [activeConversationId, setActiveConversationId] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [editingId, setEditingId] = useState(null);
+  const [editTitle, setEditTitle] = useState('');
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [showAttachmentMenu, setShowAttachmentMenu] = useState(false);
+  const fileInputRef = useRef(null);
+  
+  const handleFileSelect = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (file.size > 10 * 1024 * 1024) {
+        alert("File size exceeds 10MB limit.");
+        return;
+      }
+      setSelectedFile(file);
+      setShowAttachmentMenu(false);
+    }
+  };
+
 
   const toggleTheme = (e) => {
     e.stopPropagation();
@@ -94,13 +131,36 @@ const CareerChatbot = ({
     'Resume Help'
   ];
 
-  // Load chat history
+  // Load conversations list
+  const loadConvs = async () => {
+    try {
+      const convs = await fetchConversations();
+      setConversations(convs);
+      if (convs.length > 0 && !activeConversationId) {
+        setActiveConversationId(convs[0].id);
+      }
+    } catch (error) {
+      console.error('Failed to load conversations:', error);
+    }
+  };
+
+  useEffect(() => {
+    if (!isFloating || isOpen) {
+      loadConvs();
+    }
+  }, [isOpen, isFloating]);
+
+  // Load chat history for active conversation
   useEffect(() => {
     const loadHistory = async () => {
       setLoading(true);
       try {
-        const historyData = await fetchHistory();
+        const historyData = await fetchHistory(activeConversationId);
         setMessages(historyData.messages || []);
+        if (historyData.limitReached !== undefined) {
+          setLimitReached(historyData.limitReached);
+          setLimitRemaining(historyData.limitRemaining);
+        }
       } catch (error) {
         console.error('Failed to load chat history:', error);
       } finally {
@@ -108,11 +168,43 @@ const CareerChatbot = ({
       }
     };
 
-    // If inline, load immediately. If floating, load when opened.
     if (!isFloating || isOpen) {
       loadHistory();
     }
-  }, [isOpen, isFloating, fetchHistory]);
+  }, [isOpen, isFloating, activeConversationId]);
+  
+  const handleNewChat = () => {
+    setActiveConversationId(null);
+    setMessages([]);
+    setLimitReached(false);
+    if (isFloating) setSidebarOpen(false);
+  };
+
+  const handleRename = async (id) => {
+    if (!editTitle.trim()) { setEditingId(null); return; }
+    try {
+      await renameConversation(id, editTitle.trim());
+      setConversations(prev => prev.map(c => c.id === id ? { ...c, title: editTitle.trim() } : c));
+    } catch (e) {
+      console.error('Rename failed', e);
+    }
+    setEditingId(null);
+  };
+
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this conversation?")) return;
+    try {
+      await deleteConversation(id);
+      setConversations(prev => prev.filter(c => c.id !== id));
+      if (activeConversationId === id) {
+        setActiveConversationId(null);
+        setMessages([]);
+      }
+    } catch (e) {
+      console.error('Delete failed', e);
+    }
+  };
+
 
   // Scroll to bottom
   useEffect(() => {
@@ -135,24 +227,45 @@ const CareerChatbot = ({
   }, [messages, isOpen, isFloating]);
 
   const handleSend = async (textToSend) => {
-    const query = textToSend || inputText;
-    if (!query.trim() || submitting) return;
+    const query = typeof textToSend === 'string' ? textToSend : inputText;
+    if ((!query.trim() && !selectedFile) || submitting) return;
 
     setInputText('');
     setSubmitting(true);
+
+    const tempFile = selectedFile;
+    if (tempFile) {
+      setSelectedFile(null); // Clear selected file immediately on UI
+      setShowAttachmentMenu(false);
+    }
 
     // Optimistically update local UI
     const tempUserMsg = {
       sender: 'user',
       text: query,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
+      attachment: tempFile ? { name: tempFile.name, type: tempFile.type, url: URL.createObjectURL(tempFile) } : null
     };
     setMessages(prev => [...prev, tempUserMsg]);
 
     try {
-      const response = await sendMessage(query);
+      const response = await sendMessage(query, activeConversationId, tempFile);
       if (response && response.messages) {
         setMessages(response.messages);
+        if (response.conversationId && !activeConversationId) {
+          setActiveConversationId(response.conversationId);
+          fetchConversations().then(setConversations);
+        } else if (response.title) {
+          setConversations(prev => prev.map(c => c.id === activeConversationId ? { ...c, title: response.title, updatedAt: new Date().toISOString(), lastMessage: response.reply?.substring(0, 50) + '...' } : c));
+        }
+        if (response.limitReached !== undefined) {
+          setLimitReached(response.limitReached);
+          setLimitRemaining(response.limitRemaining);
+        }
+        if (response.uploadLimitReached !== undefined) {
+          setUploadLimitReached(response.uploadLimitReached);
+          setUploadRemaining(response.uploadRemaining);
+        }
       } else {
         // Fallback for response
         const fallbackText = response.reply || "Thanks for your response. Let's continue exploring career paths!";
@@ -168,7 +281,7 @@ const CareerChatbot = ({
         ...prev,
         {
           sender: 'ai',
-          text: '⚠️ I encountered an error. Please verify that the backend server is running and your Gemini API Key is configured.',
+          text: `⚠️ I encountered an error: ${error.message}`,
           timestamp: new Date().toISOString()
         }
       ]);
@@ -181,9 +294,20 @@ const CareerChatbot = ({
     e.stopPropagation(); // Avoid triggering open/close when clicking in floating mode header
     if (window.confirm('Are you sure you want to clear this conversation?')) {
       try {
-        const result = await clearHistory();
+        if (!activeConversationId) return;
+        const result = await clearHistory(activeConversationId);
         if (result && result.messages) {
           setMessages(result.messages);
+          if (result.limitReached !== undefined) {
+            setLimitReached(result.limitReached);
+            setLimitRemaining(result.limitRemaining);
+          } else {
+            setLimitReached(false);
+          }
+          if (result.uploadLimitReached !== undefined) {
+            setUploadLimitReached(result.uploadLimitReached);
+            setUploadRemaining(result.uploadRemaining);
+          }
         } else {
           setMessages([]);
         }
@@ -920,13 +1044,13 @@ const CareerChatbot = ({
   );
 
   const renderWelcomeScreen = (msg, idx) => {
-    // If it's the welcome message (index 0) and the only one in local state
-    if (idx === 0 && messages.length === 1) {
+    // If it's the welcome message (index 0) 
+    if (idx === 0 && msg.sender === 'ai' && (msg.text.includes('Welcome to Aspireya Consulting') || msg.text.includes('Aspireya AI'))) {
       // Personalize greeting if user profile context has a name
       const name = userProfile?.displayName || userProfile?.name || '';
       const greeting = name ? `Hello ${name}! I'm Aspireya AI` : "Hello! I'm Aspireya AI";
 
-      const welcomeText = `👋 Welcome to Aspireya Consulting!\n\n${greeting}, your Career Guidance Assistant.\n\nI can help you with:\n\n• Career Guidance\n• Stream Selection\n• Courses\n• Colleges\n• Entrance Exams\n• Skills\n• Higher Education\n• Career Opportunities\n\nHow can I help you today?`;
+      const welcomeText = `👋 ${greeting}, your Career Guidance Assistant. How can I help you today?`;
 
       return (
         <div key={idx} className="aspireya-msg-wrap bot">
@@ -992,7 +1116,17 @@ const CareerChatbot = ({
               damping: 20
             }}
           >
-            {renderMessageText(msg.text)}
+            {msg.attachment && (
+              <div style={{ padding: '8px', background: 'rgba(255,255,255,0.2)', borderRadius: '6px', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <File size={16} />
+                <div style={{ fontSize: '0.75rem', fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '150px' }}>
+                  {msg.attachment.url ? (
+                    <a href={msg.attachment.url} target="_blank" rel="noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>{msg.attachment.name}</a>
+                  ) : msg.attachment.name}
+                </div>
+              </div>
+            )}
+            {msg.text && renderMessageText(msg.text)}
           </motion.div>
         </div>
         <span className="aspireya-msg-time">{formatTime(msg.timestamp)}</span>
@@ -1001,11 +1135,82 @@ const CareerChatbot = ({
     );
   };
 
+  const filteredConvs = conversations.filter(c => c.title?.toLowerCase().includes(searchQuery.toLowerCase()));
+
+  const renderSidebar = () => (
+    <div className={`aspireya-sidebar ${sidebarOpen ? 'open' : ''} ${theme}`} style={{
+      width: isFloating ? '260px' : '300px',
+      background: 'var(--chat-bg)',
+      borderRight: '1px solid var(--chat-border)',
+      display: 'flex',
+      flexDirection: 'column',
+      position: (isFloating && sidebarOpen) ? 'absolute' : 'relative',
+      height: '100%',
+      zIndex: 20,
+      transform: (isFloating && !sidebarOpen) ? 'translateX(-100%)' : 'translateX(0)',
+      transition: 'transform 0.3s ease',
+      display: (!isFloating || sidebarOpen) ? 'flex' : 'none'
+    }}>
+      <div style={{ padding: '16px', borderBottom: '1px solid var(--chat-border)' }}>
+        <button onClick={handleNewChat} style={{
+          width: '100%', padding: '10px', background: 'var(--color-primary)', color: 'white', border: 'none', borderRadius: '8px',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', cursor: 'pointer', fontWeight: 600
+        }}>
+          <Plus size={16} /> New Chat
+        </button>
+      </div>
+      <div style={{ padding: '12px 16px', borderBottom: '1px solid var(--chat-border)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', background: 'var(--chat-bg)', border: '1px solid var(--chat-border)', borderRadius: '6px', padding: '6px 10px' }}>
+          <Search size={14} style={{ color: 'var(--chat-text-secondary)' }} />
+          <input type="text" placeholder="Search..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
+            style={{ border: 'none', background: 'transparent', width: '100%', outline: 'none', marginLeft: '8px', color: 'var(--chat-text)', fontSize: '0.85rem' }} />
+        </div>
+      </div>
+      <div style={{ flex: 1, overflowY: 'auto', padding: '10px' }}>
+        {filteredConvs.map(conv => (
+          <div key={conv.id} style={{
+            padding: '10px', borderRadius: '8px', cursor: 'pointer', marginBottom: '4px',
+            background: activeConversationId === conv.id ? 'rgba(0,0,0,0.05)' : 'transparent',
+            display: 'flex', justifyContent: 'space-between', alignItems: 'center'
+          }} onClick={() => { setActiveConversationId(conv.id); if (isFloating) setSidebarOpen(false); }}>
+            <div style={{ flex: 1, overflow: 'hidden' }}>
+              {editingId === conv.id ? (
+                <input autoFocus value={editTitle} onChange={e => setEditTitle(e.target.value)} onBlur={() => handleRename(conv.id)} onKeyDown={e => e.key === 'Enter' && handleRename(conv.id)}
+                  style={{ width: '100%', fontSize: '0.85rem', padding: '2px', border: '1px solid var(--color-primary)' }} onClick={e => e.stopPropagation()} />
+              ) : (
+                <div style={{ fontSize: '0.85rem', color: 'var(--chat-text)', fontWeight: 500, whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <MessageSquare size={14} /> {conv.title || 'New Conversation'}
+                </div>
+              )}
+            </div>
+            {activeConversationId === conv.id && editingId !== conv.id && (
+              <div style={{ display: 'flex', gap: '4px' }}>
+                <button onClick={e => { e.stopPropagation(); setEditingId(conv.id); setEditTitle(conv.title); }} style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: 'var(--chat-text-secondary)', padding: '2px' }}><Edit2 size={12} /></button>
+                <button onClick={e => { e.stopPropagation(); handleDelete(conv.id); }} style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: '#DC2626', padding: '2px' }}><Trash2 size={12} /></button>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
   const chatContainer = (
-    <div className={`aspireya-chat-window ${isFloating ? 'floating' : 'inline'}`}>
-      {/* Header */}
-      <div className="aspireya-chat-header">
+    <div className={`aspireya-chat-window ${isFloating ? 'floating' : 'inline'}`} style={{ display: 'flex', flexDirection: 'row', overflow: 'hidden' }}>
+      
+      {(!isFloating || sidebarOpen) && renderSidebar()}
+      
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', width: '100%', minWidth: 0, position: 'relative' }}>
+        
+        {/* Header */}
+        <div className="aspireya-chat-header">
+
         <div className="aspireya-header-profile">
+          {isFloating && (
+            <button onClick={() => setSidebarOpen(!sidebarOpen)} className="aspireya-header-btn" style={{ marginRight: '8px' }}>
+              <Menu size={18} />
+            </button>
+          )}
           <div className="aspireya-avatar-bot">
             <img src={chatbotAvatar} alt="AI Avatar" />
           </div>
@@ -1084,23 +1289,160 @@ const CareerChatbot = ({
       )}
 
       {/* Input panel */}
-      <div className="aspireya-input-panel">
+      <div className="aspireya-input-panel" style={{ position: 'relative' }}>
+        
+        {limitReached && (
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(255, 255, 255, 0.95)',
+            backdropFilter: 'blur(4px)',
+            zIndex: 10,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '16px',
+            textAlign: 'center',
+            borderTop: '1px solid var(--chat-border)',
+            borderBottomRightRadius: isFloating ? '16px' : '0',
+            borderBottomLeftRadius: isFloating ? '16px' : '0'
+          }} className={theme === 'dark' ? 'limit-overlay-dark' : ''}>
+            <style>{`
+              .limit-overlay-dark {
+                background: rgba(30, 27, 75, 0.95) !important;
+              }
+            `}</style>
+            <div style={{ background: '#FEE2E2', color: '#DC2626', padding: '8px', borderRadius: '50%', marginBottom: '12px' }}>
+              <Lock size={20} />
+            </div>
+            <h4 style={{ margin: '0 0 6px 0', fontSize: '0.9rem', color: 'var(--chat-text)', fontWeight: 600 }}>
+              You've reached your free AI guidance limit.
+            </h4>
+            <p style={{ margin: '0 0 16px 0', fontSize: '0.75rem', color: 'var(--chat-text-secondary)', lineHeight: 1.4 }}>
+              Continue your career journey by unlocking unlimited AI guidance.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%', maxWidth: '240px' }}>
+              <button
+                onClick={() => { if (onAssessmentClick) onAssessmentClick(); else navigate('/onboarding'); }}
+                style={{
+                  padding: '8px 12px',
+                  background: 'var(--color-primary)',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '6px',
+                  fontSize: '0.8rem',
+                  fontWeight: 600,
+                  cursor: 'pointer'
+                }}
+              >
+                🎯 Take Career Assessment
+              </button>
+              <button
+                onClick={() => { navigate('/onboarding'); }}
+                style={{
+                  padding: '8px 12px',
+                  background: 'transparent',
+                  color: 'var(--color-primary)',
+                  border: '1px solid var(--color-primary)',
+                  borderRadius: '6px',
+                  fontSize: '0.8rem',
+                  fontWeight: 600,
+                  cursor: 'pointer'
+                }}
+              >
+                Create Free Account
+              </button>
+            </div>
+          </div>
+        )}
+
+        
+        {selectedFile && (
+          <div style={{ padding: '8px 16px', background: 'var(--chat-bg)', borderTop: '1px solid var(--chat-border)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ padding: '8px', background: 'var(--color-primary)', borderRadius: '8px', color: 'white' }}>
+              <File size={20} />
+            </div>
+            <div style={{ flex: 1, overflow: 'hidden' }}>
+              <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--chat-text)', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>{selectedFile.name}</div>
+              <div style={{ fontSize: '0.7rem', color: 'var(--chat-text-secondary)' }}>{(selectedFile.size / 1024).toFixed(1)} KB</div>
+            </div>
+            <button onClick={() => setSelectedFile(null)} style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: 'var(--chat-text-secondary)' }}>
+              <X size={18} />
+            </button>
+          </div>
+        )}
         <form
           onSubmit={(e) => { e.preventDefault(); handleSend(); }}
           className="aspireya-input-form"
+          style={{ display: 'flex', alignItems: 'center' }}
         >
+          <div style={{ position: 'relative' }}>
+            <button type="button" onClick={() => setShowAttachmentMenu(!showAttachmentMenu)} style={{ background: 'transparent', border: 'none', cursor: 'pointer', padding: '8px', color: 'var(--chat-text-secondary)', display: 'flex', alignItems: 'center' }}>
+              <PlusCircle size={20} />
+            </button>
+            {showAttachmentMenu && !uploadLimitReached && (
+              <div style={{ position: 'absolute', bottom: '100%', left: 0, marginBottom: '8px', background: 'var(--chat-bg)', border: '1px solid var(--chat-border)', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', zIndex: 100, minWidth: '220px', overflow: 'hidden' }}>
+                {uploadRemaining !== -1 && (
+                  <div style={{ padding: '8px 16px', background: 'var(--chat-bg-secondary)', fontSize: '0.75rem', color: uploadRemaining === 1 ? 'var(--color-accent)' : 'var(--chat-text-secondary)', fontWeight: 600, borderBottom: '1px solid var(--chat-border)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    {uploadRemaining === 1 ? <><Sparkles size={12}/> ⚠️ Last free upload remaining</> : <><Paperclip size={12}/> 📎 {uploadRemaining} free uploads remaining</>}
+                  </div>
+                )}
+                <div onClick={() => { fileInputRef.current.click(); }} style={{ padding: '10px 16px', display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer', fontSize: '0.85rem', color: 'var(--chat-text)', borderBottom: '1px solid var(--chat-border)' }}>
+                  <FileText size={16} /> Upload Resume / Document
+                </div>
+                <div onClick={() => { fileInputRef.current.click(); }} style={{ padding: '10px 16px', display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer', fontSize: '0.85rem', color: 'var(--chat-text)', borderBottom: '1px solid var(--chat-border)' }}>
+                  <ImageIcon size={16} /> Upload Image (PNG/JPG)
+                </div>
+                <div onClick={() => { setShowAttachmentMenu(false); if(onAssessmentClick) onAssessmentClick(); else navigate('/onboarding'); }} style={{ padding: '10px 16px', display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer', fontSize: '0.85rem', color: 'var(--color-primary)' }}>
+                  <Compass size={16} /> Start Career Assessment
+                </div>
+              </div>
+            )}
+            {showAttachmentMenu && uploadLimitReached && (
+              <div style={{ position: 'absolute', bottom: '100%', left: 0, marginBottom: '8px', background: 'var(--chat-bg)', border: '1px solid var(--chat-border)', borderRadius: '12px', boxShadow: '0 8px 24px rgba(0,0,0,0.15)', zIndex: 100, width: '280px', overflow: 'hidden' }}>
+                <div style={{ padding: '16px', background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)', color: 'white' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                    <Sparkles size={18} />
+                    <h4 style={{ margin: 0, fontSize: '1rem', fontWeight: 600 }}>Limit Reached</h4>
+                  </div>
+                  <p style={{ margin: 0, fontSize: '0.8rem', opacity: 0.9 }}>You've reached your free upload limit.</p>
+                </div>
+                <div style={{ padding: '16px' }}>
+                  <p style={{ margin: '0 0 12px 0', fontSize: '0.85rem', color: 'var(--chat-text)' }}>Complete your Career Assessment to unlock:</p>
+                  <ul style={{ margin: '0 0 16px 0', paddingLeft: '20px', fontSize: '0.8rem', color: 'var(--chat-text-secondary)', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                    <li>Unlimited AI Messages</li>
+                    <li>Unlimited File Uploads</li>
+                    <li>Personalized Career Guidance</li>
+                  </ul>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <button onClick={() => { setShowAttachmentMenu(false); if(onAssessmentClick) onAssessmentClick(); else navigate('/onboarding'); }} style={{ padding: '10px', background: 'var(--color-primary)', color: 'white', border: 'none', borderRadius: '8px', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}>
+                      <Compass size={16} /> Take Career Assessment
+                    </button>
+                    <button onClick={() => setShowAttachmentMenu(false)} style={{ padding: '8px', background: 'transparent', color: 'var(--chat-text-secondary)', border: 'none', cursor: 'pointer', fontSize: '0.85rem' }}>
+                      Later
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+            <input type="file" ref={fileInputRef} onChange={handleFileSelect} style={{ display: 'none' }} accept=".pdf,.docx,.txt,.png,.jpg,.jpeg,.webp" />
+          </div>
           <input
             type="text"
             className="aspireya-input-field"
             placeholder="Ask about careers, skills, courses..."
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
-            disabled={submitting}
+            disabled={submitting || limitReached}
           />
           <motion.button
             type="submit"
             className="aspireya-submit-btn"
-            disabled={!inputText.trim() || submitting}
+            disabled={!inputText.trim() || submitting || limitReached}
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.92 }}
             transition={{
@@ -1112,6 +1454,11 @@ const CareerChatbot = ({
             <Send size={15} />
           </motion.button>
         </form>
+        {limitRemaining > 0 && limitRemaining <= 10 && (
+          <div style={{ fontSize: '0.7rem', color: '#F59E0B', textAlign: 'center', marginTop: '4px', fontWeight: 500 }}>
+            ⚠️ {limitRemaining} free messages remaining
+          </div>
+        )}
         <div className="aspireya-powered-by">
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
             Powered by <img src={logo} alt="Aspireya Logo" className="powered-by-logo" style={{ height: '14px', width: 'auto', objectFit: 'contain', verticalAlign: 'middle' }} />
@@ -1198,6 +1545,7 @@ const CareerChatbot = ({
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 

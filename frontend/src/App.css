@@ -257,7 +257,7 @@
   font-family: var(--font-heading);
   font-size: 1.25rem;
   margin-bottom: 12px;
-  color: #ffffff;
+  color: var(--text-primary);
 }
 
 .feature-card p {
@@ -1114,5 +1114,96 @@
 
   .navbar {
     padding: 16px 20px;
+  }
+/* =========================================
+   RESPONSIVE DESIGN (MOBILE & TABLET)
+========================================= */
+
+@media (max-width: 900px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* Can be replaced with a hamburger menu later if needed, or flex-wrap */
+  }
+  
+  .hero-section {
+    padding: 60px 20px 40px 20px;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 40px auto;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 0 16px;
+  }
+
+  .feature-card {
+    padding: 24px;
+  }
+
+  .options-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .dashboard-container {
+    grid-template-columns: 1fr;
+    padding: 0 16px;
+    gap: 24px;
+  }
+
+  .dashboard-header {
+    grid-column: span 1;
+  }
+
+  .dashboard-header h1 {
+    font-size: 2rem;
+  }
+
+  .auth-container {
+    padding: 20px 16px;
+  }
+
+  .onboarding-card {
+    padding: 24px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  
+  .hero-tag {
+    font-size: 0.7rem;
+    padding: 6px 16px;
   }
 }

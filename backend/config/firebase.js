@@ -7,6 +7,7 @@ dotenv.config();
 
 let db;
 let auth;
+let storage;
 let isMock = false;
 
 const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT_PATH;
@@ -21,7 +22,8 @@ if (isFirebaseConfigured) {
     if (hasServiceAccountFile) {
       const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, 'utf8'));
       admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount)
+        credential: admin.credential.cert(serviceAccount),
+        storageBucket: serviceAccount.project_id + '.appspot.com'
       });
       console.log('Firebase Admin initialized with service account certificate.');
     } else if (hasEnvConfig) {
@@ -30,7 +32,8 @@ if (isFirebaseConfigured) {
           projectId: process.env.FIREBASE_PROJECT_ID,
           clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
           privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-        })
+        }),
+        storageBucket: process.env.FIREBASE_PROJECT_ID + '.appspot.com'
       });
       console.log('Firebase Admin initialized with environment variables.');
     } else {
@@ -40,6 +43,7 @@ if (isFirebaseConfigured) {
     
     db = admin.firestore();
     auth = admin.auth();
+    storage = admin.storage();
   } catch (error) {
     console.warn('⚠️ WARNING: Firebase Admin failed to initialize properly. Running in Mock Database/Auth mode for development.');
     console.warn(error.message);
@@ -144,7 +148,7 @@ const mockDb = {
               if (valA > valB) return orderDir === 'desc' ? -1 : 1;
               return 0;
             });
-          }
+          } 
           
           if (limitNum) {
             docs = docs.slice(0, limitNum);
@@ -209,6 +213,7 @@ const mockAuth = {
 
 export const firestoreDb = isMock ? mockDb : db;
 export const firebaseAuth = isMock ? mockAuth : auth;
+export const firebaseStorage = isMock ? null : storage;
 export const firebaseAdmin = admin;
 export const firebaseIsMock = isMock;
 
