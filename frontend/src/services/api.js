@@ -1,17 +1,16 @@
-// Express Backend Base API Url. Vite dev server proxies /api requests to http://localhost:5000/api
-const BASE_URL = '/api';
-
+// Render backend URL in production; Vite proxy /api in local development
+const BASE_URL = import.meta.env.VITE_API_URL || '/api';
 const getHeaders = async () => {
   const headers = {
     'Content-Type': 'application/json',
   };
-  
+
   let sessionId = localStorage.getItem('aspireya_session_id');
   if (!sessionId) {
     sessionId = 'sess_' + Math.random().toString(36).substring(2, 15);
     localStorage.setItem('aspireya_session_id', sessionId);
   }
-  
+
   headers['Session-Id'] = sessionId;
   return headers;
 };
