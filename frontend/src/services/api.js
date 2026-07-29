@@ -1,5 +1,5 @@
 // Render backend URL in production; Vite proxy /api in local development
-const BASE_URL = import.meta.env.VITE_API_URL || '/api';
+const BASE_URL = 'https://aspireya-chatbot.onrender.com/api';
 const getHeaders = async () => {
   const headers = {
     'Content-Type': 'application/json',
