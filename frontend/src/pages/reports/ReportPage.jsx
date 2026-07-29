@@ -173,8 +173,10 @@ const ReportPage = ({ isPremiumRoute = false }) => {
           // Scale to fit page height if needed, otherwise center it
           const scaleFactor = Math.min(1, (pageHeight - (margin * 2)) / imgHeight);
           const finalHeight = imgHeight * scaleFactor;
+          const finalWidth = imgWidth * scaleFactor;
+          const xOffset = margin + (imgWidth - finalWidth) / 2;
           
-          pdf.addImage(imgData, 'JPEG', margin, margin, imgWidth, finalHeight);
+          pdf.addImage(imgData, 'JPEG', xOffset, margin, finalWidth, finalHeight);
           currentY = pageHeight; // force next element to add a new page
         } else {
           // Section items
@@ -182,11 +184,14 @@ const ReportPage = ({ isPremiumRoute = false }) => {
             // Scale down to fit page
             const scaleFactor = (pageHeight - (margin * 2)) / imgHeight;
             const finalHeight = imgHeight * scaleFactor;
+            const finalWidth = imgWidth * scaleFactor;
+            const xOffset = margin + (imgWidth - finalWidth) / 2;
+            
             if (!isFirstPage) {
               pdf.addPage();
             }
             isFirstPage = false;
-            pdf.addImage(imgData, 'JPEG', margin, margin, imgWidth, finalHeight);
+            pdf.addImage(imgData, 'JPEG', xOffset, margin, finalWidth, finalHeight);
             currentY = pageHeight;
           } else {
             // Check if it fits on current page
@@ -552,6 +557,43 @@ const ReportPage = ({ isPremiumRoute = false }) => {
             display: none !important;
           }
         }
+        
+        /* Mobile Premium Toolbar Fixes - Kept in one row like Desktop */
+        @media (max-width: 600px) {
+          .report-page-container {
+            padding: 8px !important;
+            overflow-x: hidden;
+            width: 100%;
+            box-sizing: border-box;
+          }
+          .report-inner {
+            padding: 12px !important;
+            overflow-x: hidden;
+            width: 100%;
+            box-sizing: border-box;
+          }
+          .report-wrapper {
+            max-width: 100%;
+            box-sizing: border-box;
+          }
+          .premium-toolbar-row {
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            overflow-x: auto;
+            gap: 8px !important;
+          }
+          .premium-toolbar-group {
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            gap: 6px !important;
+          }
+          .premium-toolbar-group button {
+            padding: 6px 10px !important;
+            font-size: 0.72rem !important;
+            white-space: nowrap !important;
+            flex-shrink: 0 !important;
+          }
+        }
       `}</style>
 
       {/* Top stamped seal */}
@@ -581,6 +623,7 @@ const ReportPage = ({ isPremiumRoute = false }) => {
             >
               {/* Action Buttons Row */}
               <div 
+                className="premium-toolbar-row"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -591,7 +634,7 @@ const ReportPage = ({ isPremiumRoute = false }) => {
                 }}
               >
                 {/* Left Navigation */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+                <div className="premium-toolbar-group" style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
                   <button 
                     onClick={() => navigate('/')}
                     style={{
@@ -630,7 +673,7 @@ const ReportPage = ({ isPremiumRoute = false }) => {
                 </div>
 
                 {/* Right Actions */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+                <div className="premium-toolbar-group" style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
                   <button 
                     onClick={handleShare}
                     style={{

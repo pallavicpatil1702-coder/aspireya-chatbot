@@ -142,7 +142,7 @@ const ReportCover = ({
           }}
         >
           {/* Left Column */}
-          <div style={{ flex: '1 1 340px', minWidth: '280px', textAlign: 'left' }}>
+          <div style={{ flex: '1 1 340px', minWidth: '200px', textAlign: 'left' }}>
             {/* Category Pill */}
             <div 
               style={{
@@ -231,8 +231,8 @@ const ReportCover = ({
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                flexShrink: 0,
-                minWidth: '170px'
+                flex: '1 1 180px',
+                minWidth: '140px'
               }}
             >
               <ProgressRing 

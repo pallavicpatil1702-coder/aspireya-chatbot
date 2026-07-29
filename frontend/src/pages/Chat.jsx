@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Sparkles, Compass, Calendar, ArrowRight } from 'lucide-react';
+import { Sparkles, Compass, Calendar, ArrowRight, Menu, X } from 'lucide-react';
 import logo from '../assets/logo.png';
 
 const Chat = () => {
   const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   const handleOpenChat = (e) => {
     e.preventDefault();
@@ -17,10 +22,30 @@ const Chat = () => {
       <nav className="navbar">
         <div className="nav-brand" style={{ display: 'flex', alignItems: 'center' }}>
           <div style={{ padding: '6px 16px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '48px', boxSizing: 'border-box' }}>
-            <img src={logo} alt="Aspireya Logo" className="nav-logo" style={{ height: '200px', width: 'auto', objectFit: 'contain', display: 'block' }} />
+            <img src={logo} alt="Aspireya Logo" className="nav-logo" />
           </div>
         </div>
-        <div className="nav-links">
+        
+        {/* Mobile Hamburger Button */}
+        <button 
+          className="mobile-menu-toggle" 
+          onClick={toggleMobileMenu}
+          style={{ background: 'transparent', border: 'none', cursor: 'pointer', display: 'none', color: 'var(--text-primary)' }}
+        >
+          <Menu size={28} />
+        </button>
+
+        {isMobileMenuOpen && (
+          <div className="mobile-drawer-backdrop" onClick={toggleMobileMenu}></div>
+        )}
+
+        <div className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+          <div className="mobile-drawer-header">
+            <span style={{ fontWeight: 700, fontSize: '1.2rem', color: 'var(--text-primary)' }}>Menu</span>
+            <button onClick={toggleMobileMenu} style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: 'var(--text-primary)' }}>
+              <X size={24} />
+            </button>
+          </div>
           <a href="#" className="nav-link active">Home</a>
           <button
             onClick={() => navigate('/onboarding')}

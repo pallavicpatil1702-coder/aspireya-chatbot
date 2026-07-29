@@ -3,6 +3,27 @@ import { getGeminiModel } from '../config/gemini.js';
 import crypto from 'crypto';
 import { processFile } from '../services/fileProcessor.js';
 
+import { fileURLToPath } from 'url';
+import fs from 'fs';
+import path from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+let faqCache = null;
+const loadFaqCache = () => {
+  if (faqCache) return faqCache;
+  try {
+    const faqPath = path.join(__dirname, '../data/faq.json');
+    const data = fs.readFileSync(faqPath, 'utf8');
+    faqCache = JSON.parse(data);
+  } catch (error) {
+    console.error("Failed to load FAQ cache:", error);
+    faqCache = [];
+  }
+  return faqCache;
+};
+
 const FREE_MESSAGE_LIMIT = 30;
 const FREE_FILE_UPLOAD_LIMIT = 5;
 
@@ -434,6 +455,7 @@ export const sendMessage = async (req, res) => {
     messages.push({
       sender: 'user',
       text: message || '',
+      extractedText: extractedText || null,
       attachment: attachmentMeta,
       timestamp: new Date().toISOString()
     });
@@ -458,14 +480,37 @@ export const sendMessage = async (req, res) => {
       });
     }
 
-    // Check for hardcoded 10th / 12th flow
+    // Check for hardcoded 10th / 12th flow or FAQ Match
     let bypassReply = null;
-    if (currentStage === "none" && lowerMessage.includes("10th")) {
-      await userRef.set({ chatStage: "waiting_for_subjects_10th" }, { merge: true });
-      bypassReply = "🎉 Congratulations on completing your 10th! Please tell me your top 4 highest-scoring subjects along with their marks.";
-    } else if (currentStage === "none" && lowerMessage.includes("12th")) {
-      await userRef.set({ chatStage: "waiting_for_stream" }, { merge: true });
-      bypassReply = "🎉 Congratulations on completing your 12th!\nWhich stream did you study?\n• Science (PCM)\n• Science (PCB)\n• Commerce\n• Arts/Humanities\n• Other";
+    
+    const faqList = loadFaqCache();
+    const cleanMessage = lowerMessage.replace(/[^\w\s]/g, '').trim();
+    const wordCount = cleanMessage.split(/\s+/).length;
+    
+    // Only apply static FAQ bypass if the message is short (<= 10 words).
+    // This prevents complex career questions that happen to contain a keyword 
+    // from getting a generic, incorrect response.
+    if (wordCount <= 10) {
+      for (const faq of faqList) {
+        const hasMatch = faq.keywords.some(kw => {
+          const regex = new RegExp(`\\b${kw}\\b`, 'i');
+          return regex.test(cleanMessage);
+        });
+        if (hasMatch) {
+          bypassReply = faq.response;
+          break;
+        }
+      }
+    }
+
+    if (!bypassReply) {
+      if (currentStage === "none" && lowerMessage.includes("10th")) {
+        await userRef.set({ chatStage: "waiting_for_subjects_10th" }, { merge: true });
+        bypassReply = "🎉 Congratulations on completing your 10th! Please tell me your top 4 highest-scoring subjects along with their marks.";
+      } else if (currentStage === "none" && lowerMessage.includes("12th")) {
+        await userRef.set({ chatStage: "waiting_for_stream" }, { merge: true });
+        bypassReply = "🎉 Congratulations on completing your 12th!\nWhich stream did you study?\n• Science (PCM)\n• Science (PCB)\n• Commerce\n• Arts/Humanities\n• Other";
+      }
     }
 
     // Title generation on first message
@@ -528,9 +573,14 @@ export const sendMessage = async (req, res) => {
     const geminiHistory = [];
     messages.forEach((msg) => {
       const role = msg.sender === 'user' ? 'user' : 'model';
+      let fullText = msg.text || '';
+      if (msg.extractedText) {
+        fullText += `\n\n[Attached File Content: ${msg.attachment?.name || 'File'}]\n${msg.extractedText}`;
+      }
+      if (!fullText.trim()) fullText = '[User sent a file]';
       geminiHistory.push({
         role: role,
-        parts: [{ text: msg.text }]
+        parts: [{ text: fullText }]
       });
     });
 

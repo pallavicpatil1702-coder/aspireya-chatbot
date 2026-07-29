@@ -205,9 +205,9 @@ const RadarChart = ({ userTraits = {} }) => {
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
           gap: '10px',
-          flex: 1,
+          flex: '1 1 300px',
           width: '100%',
-          minWidth: '240px'
+          minWidth: '200px'
         }}
       >
         {slices.map((slice, idx) => (

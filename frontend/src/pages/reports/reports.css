@@ -383,3 +383,33 @@ body.pdf-export-mode .report-wrapper {
 body.pdf-export-mode .report-inner {
   padding: 0 !important;
 }
+
+body.pdf-export-mode #assessment-report-content,
+body.pdf-export-mode .report-wrapper,
+body.pdf-export-mode .report-inner-container,
+body.pdf-export-mode .c1112-container {
+  min-width: 1000px !important;
+  width: 1000px !important;
+  max-width: 1000px !important;
+  margin: 0 auto !important;
+}
+
+/* Mobile Optimization Fixes */
+@media (max-width: 600px) {
+  .report-inner-container {
+    padding: 8px !important;
+  }
+  .report-card-premium {
+    padding: 16px !important;
+    border-radius: 16px !important;
+  }
+  .report-heading-1 {
+    font-size: 1.5rem !important;
+  }
+  .report-heading-2 {
+    font-size: 1.25rem !important;
+  }
+  .report-page-grid {
+    gap: 16px !important;
+  }
+}

@@ -26,6 +26,9 @@ export const processFile = async (file) => {
     if (file.mimetype === 'application/pdf') {
       const data = await pdfParse(file.buffer);
       extractedText = data.text;
+      if (!extractedText || extractedText.trim().length < 5) {
+        extractedText = '[System Note: The uploaded PDF appears to be a scanned document or an image-based PDF with no readable text layer. OCR/Vision processing is currently offline. Please kindly inform the user that you cannot read image-based PDFs and ask them to type out their result or provide a text-based document instead.]';
+      }
     } 
     else if (file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
       const result = await mammoth.extractRawText({ buffer: file.buffer });
@@ -35,29 +38,9 @@ export const processFile = async (file) => {
       extractedText = file.buffer.toString('utf-8');
     }
     else if (file.mimetype.startsWith('image/')) {
-      if (aiIsMock || !aiClient) {
-        extractedText = '[Image processing unavailable in Mock Mode]';
-      } else {
-        const base64Image = file.buffer.toString('base64');
-        const response = await aiClient.chat.completions.create({
-          model: 'llama-3.2-90b-vision-preview',
-          messages: [
-            {
-              role: 'user',
-              content: [
-                { type: 'text', text: 'Extract all the visible text, details, and describe the contents of this image comprehensively so it can be used for career counseling, resume analysis, or document verification. Do not converse, just extract and describe.' },
-                {
-                  type: 'image_url',
-                  image_url: {
-                    url: `data:${file.mimetype};base64,${base64Image}`
-                  }
-                }
-              ]
-            }
-          ]
-        });
-        extractedText = response.choices[0]?.message?.content || '[Image processing failed to extract content]';
-      }
+      // Groq has decommissioned their vision models. Image text extraction will fail.
+      // We explicitly inform the LLM and the user via this extracted text.
+      extractedText = '[System Note: Image processing is currently unsupported because the vision model is offline. Please ask the user to type out their result, or upload it as a PDF document instead.]';
     }
 
     return truncateText(extractedText.trim());

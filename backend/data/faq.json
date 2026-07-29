@@ -1,0 +1,362 @@
+[
+  {
+    "keywords": [
+      "hi", "hello", "hey", "good morning", "good afternoon", "good evening", "namaste", "hiiii", "hellooo", "heyy", "hii", "hola", "sup"
+    ],
+    "response": "Hello! 👋 I am Aspireya AI, your personal Career Guidance Assistant. Are you currently in 10th, 12th, or looking for general career advice?"
+  },
+  {
+    "keywords": [
+      "who are you", "what is your name", "what do you do", "who is this", "tell me about yourself", "tum kaun ho", "tera naam kya hai", "what is this", "introduce yourself"
+    ],
+    "response": "I am Aspireya AI! 🤖 I help students like you discover your strengths, interests, and the best career paths through personalized guidance and assessments."
+  },
+  {
+    "keywords": [
+      "what is assessment", "how to take test", "give me test", "psychometric test", "start assessment", "take assessment", "test kya hai", "assessment kaha hai"
+    ],
+    "response": "Our Career Assessment Test helps identify your personality, strengths, and ideal career fit. You can start it by clicking the 'Assessment' button in the menu or typing 'I want to take the assessment'."
+  },
+  {
+    "keywords": [
+      "is it free", "do i have to pay", "price", "cost", "is this free", "charges", "fees", "paisa lagega kya", "kitne paise"
+    ],
+    "response": "Chatting with me is completely free for basic guidance! We also offer Premium Assessments and detailed PDF reports for a deeper dive into your career roadmap."
+  },
+  {
+    "keywords": [
+      "i am confused", "dont know what to do", "help me choose", "confused about career", "not sure", "cant decide", "confusion hai", "career samajh nahi aa raha", "kya karu"
+    ],
+    "response": "It's completely normal to feel confused about your career! That's what I'm here for. To get started, could you tell me your current education level (e.g., 10th, 12th) and what subjects you enjoy the most?"
+  },
+  {
+    "keywords": [
+      "thank you", "thanks", "ok", "bye", "goodbye", "thanks bro", "thankyou", "thx", "tq", "dhanyawad", "shukriya", "achha thik hai", "ok bye"
+    ],
+    "response": "You're very welcome! 😊 Feel free to ask if you have any more questions about your career journey. Best of luck!"
+  },
+  {
+    "keywords": [
+      "stupid", "idiot", "dumb", "useless", "shut up", "pagal", "bakwas", "gali", "chup kar", "robot", "fake"
+    ],
+    "response": "I'm here to help you with your career planning! If you have any serious questions about your future, subjects, or careers, feel free to ask. 😊"
+  },
+  {
+    "keywords": [
+      "how are you", "how r u", "kaise ho", "kya chal raha hai", "wassup", "what is up", "kya haal hai", "kya haal", "sab thik"
+    ],
+    "response": "I'm doing great, thank you! I'm ready to help you plan your career. What are you currently studying?"
+  },
+  {
+    "keywords": [
+      "who created you", "who made you", "tumhe kisne banaya", "creator", "founder", "developer", "who built you"
+    ],
+    "response": "I was created by the amazing team at Aspireya Consulting to help students find their perfect career paths!"
+  },
+  {
+    "keywords": [
+      "help", "mujhe help chahiye", "i need help", "support", "madad karo", "please help", "help me"
+    ],
+    "response": "I can help you explore career options, choose streams, or take a career assessment. Could you tell me what specific help you need? Are you in 10th, 12th, or a graduate?"
+  },
+  {
+    "keywords": [
+      "contact", "customer care", "talk to human", "contact us", "number", "email", "phone number", "call me", "tumhara number kya hai"
+    ],
+    "response": "For direct support, you can contact the Aspireya Consulting team at our official email or book a Career Guidance Session from the dashboard!"
+  },
+  {
+    "keywords": [
+      "good", "nice", "awesome", "great", "wow", "amazing", "badhiya", "mast", "superb", "excellent", "very good"
+    ],
+    "response": "Glad you think so! Ready to talk about your career goals?"
+  },
+  {
+    "keywords": [
+      "i am in 10th", "10th pass", "10th class", "completed 10th", "class 10", "10th standard"
+    ],
+    "response": "🎉 Congratulations on your 10th! Please tell me your top 4 highest-scoring subjects along with their marks."
+  },
+  {
+    "keywords": [
+      "i am in 12th", "12th pass", "12th class", "completed 12th", "class 12", "12th standard"
+    ],
+    "response": "🎉 Congratulations on your 12th!\nWhich stream did you study?\n• Science (PCM/PCB)\n• Commerce\n• Arts/Humanities\n• Other"
+  },
+  {
+    "keywords": [
+      "are you chatgpt", "are you chat gpt", "are you openai", "is this chatgpt", "gpt"
+    ],
+    "response": "I am Aspireya AI, a specialized Career Guidance Assistant developed by Aspireya Consulting. I focus purely on helping you with your education and career journey!"
+  },
+  {
+    "keywords": [
+      "tell me a joke", "make me laugh", "joke", "chutkula"
+    ],
+    "response": "Why did the student eat their homework? Because the teacher said it was a piece of cake! 🍰 Now, let's talk about your career plans!"
+  },
+  {
+    "keywords": [
+      "write an essay", "do my homework", "write code", "math problem", "solve this", "homework", "assignment"
+    ],
+    "response": "I'm a Career Guidance Expert, so I don't do homework or write essays! But I'd love to help you figure out what subjects or careers fit you best. What are you studying right now?"
+  },
+  {
+    "keywords": [
+      "do you speak hindi", "hindi aati hai", "can you speak hindi", "hindi", "hindi me baat karo"
+    ],
+    "response": "Yes, I can understand and speak in Hindi! Aap mujhse apne career aur padhai ke baare mein Hindi ya Hinglish mein baat kar sakte hain."
+  },
+  {
+    "keywords": [
+      "are you human", "insaan ho ya robot", "robot ho"
+    ],
+    "response": "I am an Artificial Intelligence created to assist you. Think of me as your 24/7 digital career counselor! 🤖"
+  },
+  {
+    "keywords": [
+      "mca", "mca complete kiya", "doing mca", "completed mca", "mca student", "master of computer applications"
+    ],
+    "response": "That's great! MCA opens up excellent opportunities in Software Development, Data Science, and IT Consulting. Are you looking for specific tech roles, interview prep, or exploring which tech stack to master?"
+  },
+  {
+    "keywords": [
+      "bca", "bca complete kiya", "doing bca", "completed bca", "bca student", "bachelor of computer applications"
+    ],
+    "response": "Awesome! BCA gives you a strong foundation in IT. Are you looking to dive directly into jobs like Web Development/Testing, or are you planning to pursue an MCA next?"
+  },
+  {
+    "keywords": [
+      "btech", "b.tech", "engineering", "completed engineering", "be", "b.e", "doing btech", "btech student"
+    ],
+    "response": "Engineering is a fantastic field with diverse career paths! Which branch are you in? And are you looking for core jobs, IT jobs, or planning for higher studies like M.Tech or MBA?"
+  },
+  {
+    "keywords": [
+      "mba", "bba", "bcom", "b.com", "commerce", "completed bcom", "doing mba", "mba student"
+    ],
+    "response": "Great! A background in Business and Commerce provides amazing options in Finance, Marketing, HR, and Analytics. What specific corporate roles or domains excite you the most?"
+  },
+  {
+    "keywords": [
+      "bsc", "b.sc", "msc", "m.sc", "science student", "completed bsc", "bsc student"
+    ],
+    "response": "Wonderful! With a Science background, you can explore Research, Academics, Tech, or even specialized fields like Data Analytics. Do you have a specific career in mind or are you feeling confused?"
+  },
+  {
+    "keywords": [
+      "ba", "b.a", "ma", "m.a", "arts", "humanities", "arts student", "completed ba"
+    ],
+    "response": "That's excellent! The Arts and Humanities field offers brilliant careers in Civil Services, Content, Design, Psychology, and Media. Are you exploring government jobs or private sector opportunities?"
+  },
+  {
+    "keywords": [
+      "graduate", "graduation", "completed graduation", "graduated", "post graduate"
+    ],
+    "response": "Congratulations on your graduation! 🎓 The professional world is vast. Are you looking for job opportunities right now, preparing for competitive exams, or considering further studies?"
+  },
+  {
+    "keywords": [
+      "llb", "l.l.b", "law student", "completed law", "doing llb", "lawyer"
+    ],
+    "response": "That's fantastic! A career in Law is highly respected. Are you looking towards Corporate Law, Litigation, Judiciary exams, or Legal Consulting?"
+  },
+  {
+    "keywords": [
+      "bed", "b.ed", "b ed", "teaching", "completed bed", "doing bed"
+    ],
+    "response": "Teaching is a wonderful and noble profession! 📚 Are you preparing for government teaching exams like CTET/TET, or looking for opportunities in private institutions and EdTech?"
+  },
+  {
+    "keywords": [
+      "mbbs", "bds", "bams", "bhms", "doctor", "medical student"
+    ],
+    "response": "A career in Medicine is incredible! 🩺 Are you currently preparing for NEET-PG, looking to start your practice, or exploring alternative healthcare administration roles?"
+  },
+  {
+    "keywords": [
+      "barch", "b.arch", "architecture", "architect"
+    ],
+    "response": "Architecture is a great blend of creativity and engineering! 🏛️ Are you interested in urban planning, interior design, or starting your own architectural firm?"
+  },
+  {
+    "keywords": [
+      "phd", "p.h.d", "doctorate", "research scholar"
+    ],
+    "response": "Wow, a PhD requires immense dedication! 🎓 Are you aiming for a career in academia as a professor, or looking to transition into industry research and development?"
+  },
+  {
+    "keywords": [
+      "upsc", "ias", "ips", "ssc", "bank po", "government job", "sarkari naukri", "civil services"
+    ],
+    "response": "Preparing for government exams like UPSC or SSC requires great strategy and consistency! 📚 Are you looking for exam patterns, syllabus, or deciding which exam to target?"
+  },
+  {
+    "keywords": [
+      "software engineer", "coder", "programmer", "it job", "computer science", "web developer", "app developer"
+    ],
+    "response": "The Tech and IT field is booming! 💻 To become a successful Software Engineer, you'll need to master problem-solving and coding. Are you currently learning any programming languages like Python, Java, or C++?"
+  },
+  {
+    "keywords": [
+      "gamer", "youtuber", "vlogger", "playing games", "sports", "cricket", "music", "singer", "actor"
+    ],
+    "response": "That's awesome! 🎮🎸 Turning a passion like Gaming, Sports, or Content Creation into a profession is totally possible today. Are you looking to pursue this full-time or keep it as a side-hustle?"
+  },
+  {
+    "keywords": [
+      "highest paying job", "sabse zyada paise", "how to become rich", "salary", "high package", "paisa"
+    ],
+    "response": "Careers in Tech (AI, Data Science), Management, Finance, and Medicine often offer the highest salaries. 💰 But remember, the highest pay comes from being excellent at what you do! Which field interests you the most?"
+  },
+  {
+    "keywords": [
+      "test", "testing", "check", "123", "abc", "hello testing"
+    ],
+    "response": "Are you just testing me? 😄 I'm fully functional and ready to guide you! Tell me what you're studying right now so we can discuss your career."
+  },
+  {
+    "keywords": [
+      "best career after 10th", "career after 10th", "10th ke baad kya kare", "after class 10", "passed 10th"
+    ],
+    "response": "After 10th, you can choose Science, Commerce, Arts, Diploma, ITI, or Skill-based courses depending on your interests and strengths. Tell me your favorite subjects so I can guide you better."
+  },
+  {
+    "keywords": [
+      "best career after 12th", "career after 12th", "12th ke baad kya kare", "after class 12", "passed 12th"
+    ],
+    "response": "After 12th, your career options depend on your stream and interests. Tell me your stream (Science, Commerce, Arts) and your interests so I can suggest suitable career paths."
+  },
+  {
+    "keywords": [
+      "science", "science student", "pcm", "pcb", "science stream"
+    ],
+    "response": "Science offers careers in Engineering, Medicine, Data Science, AI, Research, Architecture, Aviation, and many more. Which field interests you the most?"
+  },
+  {
+    "keywords": [
+      "artificial intelligence", "ai", "machine learning", "ml engineer"
+    ],
+    "response": "Artificial Intelligence is one of the fastest-growing fields. Learning Python, Machine Learning, Data Structures, and Mathematics can help you build a successful AI career."
+  },
+  {
+    "keywords": [
+      "data scientist", "data science", "analytics"
+    ],
+    "response": "Data Science combines programming, statistics, and business knowledge. Learning Python, SQL, Statistics, and Machine Learning is a great way to enter this field."
+  },
+  {
+    "keywords": [
+      "cyber security", "cybersecurity", "ethical hacking", "security"
+    ],
+    "response": "Cyber Security professionals protect organizations from cyber threats. Learning Networking, Linux, Ethical Hacking, and Security Fundamentals is a great starting point."
+  },
+  {
+    "keywords": [
+      "cloud computing", "aws", "azure", "cloud engineer"
+    ],
+    "response": "Cloud Computing is one of today's most in-demand skills. Platforms like AWS, Azure, and Google Cloud provide excellent career opportunities."
+  },
+  {
+    "keywords": [
+      "jee", "jee mains", "jee advanced"
+    ],
+    "response": "JEE is the entrance exam for Engineering colleges in India. Focus on Physics, Chemistry, Mathematics, and regular mock tests for better performance."
+  },
+  {
+    "keywords": [
+      "neet", "medical entrance"
+    ],
+    "response": "NEET is the entrance examination for MBBS, BDS, and other medical courses. Strong Biology preparation along with Physics and Chemistry is essential."
+  },
+  {
+    "keywords": [
+      "best skill", "future skills", "skills", "what skill should i learn"
+    ],
+    "response": "Some of the most valuable future skills include Artificial Intelligence, Data Analytics, Cloud Computing, Cyber Security, Programming, Communication, and Problem Solving."
+  },
+  {
+    "keywords": [
+      "best college", "top college", "college recommendation", "good college"
+    ],
+    "response": "The best college depends on your course, budget, location, and career goals. Tell me which course you're interested in, and I'll recommend suitable colleges."
+  },
+  {
+    "keywords": [
+      "study abroad", "foreign study", "study in usa", "study in canada", "study in germany", "study in uk"
+    ],
+    "response": "Studying abroad can provide excellent academic and career opportunities. Tell me your preferred country and course so I can guide you accordingly."
+  },
+  {
+    "keywords": [
+      "i failed", "failed exam", "i am disappointed", "exam fail"
+    ],
+    "response": "I'm sorry to hear that. One exam doesn't define your future. Many successful people have faced setbacks. Let's focus on understanding your strengths and planning your next steps together."
+  },
+  {
+    "keywords": [
+      "i have no confidence", "low confidence", "not confident", "i am weak"
+    ],
+    "response": "Confidence grows with practice, learning, and small achievements. Let's identify your strengths and build a career plan that matches your abilities."
+  },
+  {
+    "keywords": [
+      "report", "assessment report", "career report", "pdf report"
+    ],
+    "response": "Your detailed Career Assessment Report becomes available after completing the assessment. It includes personality insights, career matches, strengths, and personalized recommendations."
+  },
+  {
+    "keywords": [
+      "certificate", "completion certificate"
+    ],
+    "response": "If certificates are available for your assessment or activity, you'll find them in your dashboard after successful completion."
+  },
+  {
+    "keywords": [
+      "login", "cannot login", "signin", "sign in"
+    ],
+    "response": "If you're having trouble logging in, please make sure you're using the correct email and password. If the issue continues, contact the Aspireya support team."
+  },
+  {
+    "keywords": [
+      "signup", "register", "create account"
+    ],
+    "response": "Creating an Aspireya account is quick and easy. Simply click the Sign Up button and complete the registration process to get started."
+  },
+  {
+    "keywords": [
+      "dashboard", "my dashboard"
+    ],
+    "response": "Your dashboard contains your assessments, reports, career recommendations, and progress. Simply log in to access all your personalized information."
+  },
+  {
+    "keywords": [
+      "history", "chat history", "previous chats"
+    ],
+    "response": "Your previous conversations are available in the Chat History section if history has been enabled for your account."
+  },
+  {
+    "keywords": [
+      "can you guarantee job", "will i get job", "job guarantee"
+    ],
+    "response": "No one can guarantee a job, but I can help you improve your skills, choose the right career path, and prepare effectively to increase your chances of success."
+  },
+  {
+    "keywords": [
+      "future prediction", "predict my future", "future"
+    ],
+    "response": "I can't predict the future, but I can help you make informed career decisions based on your education, interests, strengths, and current industry trends."
+  },
+  {
+    "keywords": [
+      "best career", "which career is best", "career suggestion"
+    ],
+    "response": "The best career depends on your interests, strengths, personality, and goals. I'd be happy to help you explore suitable options. Could you tell me about your education and interests?"
+  },
+  {
+    "keywords": [
+      "internship", "internships"
+    ],
+    "response": "Internships help you gain practical experience, improve your resume, and develop industry skills. Tell me your field of study so I can suggest relevant opportunities."
+  }
+]

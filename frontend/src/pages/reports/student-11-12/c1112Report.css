@@ -397,3 +397,34 @@
     display: none !important;
   }
 }
+
+/* Mobile Optimization Fixes */
+@media (max-width: 600px) {
+  .c1112-container {
+    gap: 16px !important;
+  }
+  .c1112-card,
+  .c1112-summary-card,
+  .c1112-match-card,
+  .c1112-field-card {
+    padding: 16px !important;
+  }
+  .c1112-premium-lock-wrapper {
+    padding: 24px 16px !important;
+  }
+  .c1112-lock-overlay {
+    padding: 24px 16px !important;
+  }
+  .c1112-timeline {
+    padding-left: 16px !important;
+    margin-left: 4px !important;
+  }
+  .c1112-timeline-item {
+    padding: 14px 16px !important;
+  }
+  .c1112-match-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+}
