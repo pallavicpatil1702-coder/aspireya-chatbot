@@ -386,7 +386,7 @@ const Assessment = () => {
     setLoadingQuestions(true);
     try {
       const sessionId = localStorage.getItem('aspireya_session_id');
-      const response = await fetch(`${API_URL}/assessment/questions?type=${type}`, {
+      const response = await fetch(`${API_URL}/api/assessment/questions?type=${type}`, {
         headers: {
           'Session-Id': sessionId || 'default-session'
         }
