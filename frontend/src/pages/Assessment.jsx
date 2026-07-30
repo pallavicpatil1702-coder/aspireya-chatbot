@@ -264,7 +264,6 @@ const Assessment = () => {
   ];
 
   // Fetch Questions
-  const API_URL = import.meta.env.VITE_API_URL || '';
 
   useEffect(() => {
     const fetchQuestions = async () => {
