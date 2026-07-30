@@ -282,6 +282,13 @@ const Assessment = () => {
           throw new Error('Failed to load questions from backend.');
         }
         const data = await response.json();
+        if (data.assessmentType === 'undetermined') {
+          setAssessmentType('undetermined');
+          setQuestions([]);
+          setSections([]);
+          return;
+        }
+
         if (data.questions && data.sections) {
           setQuestions(data.questions);
           setSections(data.sections);
