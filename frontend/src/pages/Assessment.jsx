@@ -459,7 +459,7 @@ const Assessment = () => {
 
       let sessionId = localStorage.getItem('aspireya_session_id');
 
-      const response = await fetch('/api/report/submit', {
+      const response = await fetch(`${API_URL}/api/report/submit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
