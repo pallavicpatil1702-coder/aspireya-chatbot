@@ -9,7 +9,7 @@ import { validateAndNormalizeReport } from './utils/reportValidation.js';
 import './reports.css';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
-
+const API_URL = import.meta.env.VITE_API_URL || '';
 /**
  * ReportPage is the top-level container that loads, validates, and frames the report.
  */
@@ -33,14 +33,14 @@ const ReportPage = ({ isPremiumRoute = false }) => {
     setError(null);
     try {
       let sessionId = localStorage.getItem('aspireya_session_id');
-      const response = await fetch('/api/report', {
+      const response = await fetch(`${API_URL}/api/report`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           'Session-Id': sessionId || 'default-session'
         }
       });
-      
+
       if (!response.ok) {
         if (response.status === 404) {
           throw new Error('NOT_FOUND');
@@ -50,13 +50,13 @@ const ReportPage = ({ isPremiumRoute = false }) => {
       }
 
       const data = await response.json();
-      
+
       // Perform validation and normalization
       const validation = validateAndNormalizeReport(data);
       if (!validation.isValid) {
         console.warn("[Validation Warning] Report data validation failed:", validation.errors);
       }
-      
+
       setReport(validation.normalized);
     } catch (err) {
       console.error(err);
@@ -95,7 +95,7 @@ const ReportPage = ({ isPremiumRoute = false }) => {
   const handleDownloadPDF = async () => {
     if (!report) return;
     setPdfState('generating');
-    
+
     // 2. Temporarily add body-level class
     document.body.classList.add('pdf-export-mode');
 
@@ -108,12 +108,12 @@ const ReportPage = ({ isPremiumRoute = false }) => {
       // Query sections sequentially
       let elementsToRender = [];
       const innerContainer = element.querySelector('.report-inner-container');
-      
+
       if (innerContainer) {
         const children = Array.from(innerContainer.children);
         if (children[0]) elementsToRender.push({ element: children[0], type: 'page' }); // Cover
         if (children[1]) elementsToRender.push({ element: children[1], type: 'page' }); // Dashboard
-        
+
         if (children[2]) {
           const sections = Array.from(children[2].children);
           sections.forEach(sec => {
@@ -124,7 +124,7 @@ const ReportPage = ({ isPremiumRoute = false }) => {
         // Fallback
         const explicitPages = element.querySelectorAll('.pdf-page');
         explicitPages.forEach(el => elementsToRender.push({ element: el, type: 'page' }));
-        
+
         const explicitSections = element.querySelectorAll('.pdf-section, .pdf-keep-together');
         explicitSections.forEach(el => elementsToRender.push({ element: el, type: 'section' }));
       }
@@ -143,7 +143,7 @@ const ReportPage = ({ isPremiumRoute = false }) => {
 
       for (let i = 0; i < elementsToRender.length; i++) {
         const item = elementsToRender[i];
-        
+
         // Hide scrollbars/overflow on element for html2canvas
         const originalStyle = item.element.style.cssText;
         item.element.style.overflow = 'visible';
@@ -175,7 +175,7 @@ const ReportPage = ({ isPremiumRoute = false }) => {
           const finalHeight = imgHeight * scaleFactor;
           const finalWidth = imgWidth * scaleFactor;
           const xOffset = margin + (imgWidth - finalWidth) / 2;
-          
+
           pdf.addImage(imgData, 'JPEG', xOffset, margin, finalWidth, finalHeight);
           currentY = pageHeight; // force next element to add a new page
         } else {
@@ -186,7 +186,7 @@ const ReportPage = ({ isPremiumRoute = false }) => {
             const finalHeight = imgHeight * scaleFactor;
             const finalWidth = imgWidth * scaleFactor;
             const xOffset = margin + (imgWidth - finalWidth) / 2;
-            
+
             if (!isFirstPage) {
               pdf.addPage();
             }
@@ -312,7 +312,7 @@ const ReportPage = ({ isPremiumRoute = false }) => {
 
   if (error === 'NOT_FOUND') {
     return (
-      <ReportUnavailable 
+      <ReportUnavailable
         message="It looks like you haven't taken the Aspireya Career Assessment yet. Take the diagnostic test now to receive your multi-dimensional insights portfolio."
       />
     );
@@ -320,17 +320,17 @@ const ReportPage = ({ isPremiumRoute = false }) => {
 
   if (error) {
     return (
-      <ReportErrorState 
-        error={error} 
-        onRetry={fetchReport} 
+      <ReportErrorState
+        error={error}
+        onRetry={fetchReport}
       />
     );
   }
 
   if (!report) {
     return (
-      <ReportUnavailable 
-        message="The report document could not be loaded." 
+      <ReportUnavailable
+        message="The report document could not be loaded."
       />
     );
   }
@@ -605,7 +605,7 @@ const ReportPage = ({ isPremiumRoute = false }) => {
         {/* Executive Navigation Toolbar (Outside printable content) */}
         <div className="report-inner" style={{ paddingBottom: 0 }}>
           {viewPremium ? (
-            <div 
+            <div
               className="no-print"
               style={{
                 background: '#ffffff',
@@ -622,7 +622,7 @@ const ReportPage = ({ isPremiumRoute = false }) => {
               }}
             >
               {/* Action Buttons Row */}
-              <div 
+              <div
                 className="premium-toolbar-row"
                 style={{
                   display: 'flex',
@@ -635,7 +635,7 @@ const ReportPage = ({ isPremiumRoute = false }) => {
               >
                 {/* Left Navigation */}
                 <div className="premium-toolbar-group" style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
-                  <button 
+                  <button
                     onClick={() => navigate('/')}
                     style={{
                       background: '#f8fafc',
@@ -655,7 +655,7 @@ const ReportPage = ({ isPremiumRoute = false }) => {
                     <span>Back to Dashboard</span>
                   </button>
 
-                  <button 
+                  <button
                     onClick={() => navigate('/report')}
                     style={{
                       background: '#f8fafc',
@@ -674,7 +674,7 @@ const ReportPage = ({ isPremiumRoute = false }) => {
 
                 {/* Right Actions */}
                 <div className="premium-toolbar-group" style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
-                  <button 
+                  <button
                     onClick={handleShare}
                     style={{
                       background: '#eef2ff',
@@ -694,7 +694,7 @@ const ReportPage = ({ isPremiumRoute = false }) => {
                     <span>{shareCopied ? 'Link Copied!' : 'Share Report'}</span>
                   </button>
 
-                  <button 
+                  <button
                     onClick={() => window.print()}
                     style={{
                       background: '#f8fafc',
@@ -714,7 +714,7 @@ const ReportPage = ({ isPremiumRoute = false }) => {
                     <span>Print Report</span>
                   </button>
 
-                  <button 
+                  <button
                     onClick={handleDownloadPDF}
                     disabled={pdfState === 'generating'}
                     style={{
@@ -739,7 +739,7 @@ const ReportPage = ({ isPremiumRoute = false }) => {
               </div>
 
               {/* Metadata Ribbon Row */}
-              <div 
+              <div
                 style={{
                   background: '#f8fafc',
                   border: '1px solid #e2e8f0',
@@ -761,7 +761,7 @@ const ReportPage = ({ isPremiumRoute = false }) => {
                   <span><strong>Report ID:</strong> {report.uid ? `${report.uid.slice(0, 16)}...` : 'N/A'}</span>
                 </div>
 
-                <div 
+                <div
                   style={{
                     background: '#ecfdf5',
                     border: '1px solid #a7f3d0',
@@ -786,10 +786,10 @@ const ReportPage = ({ isPremiumRoute = false }) => {
                 <ArrowLeft size={16} />
                 <span>Back to Chat</span>
               </button>
-              <img 
-                src={logo} 
-                alt="Aspireya Logo" 
-                style={{ height: '36px', width: 'auto', objectFit: 'contain' }} 
+              <img
+                src={logo}
+                alt="Aspireya Logo"
+                style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
               />
             </div>
           )}
@@ -801,11 +801,11 @@ const ReportPage = ({ isPremiumRoute = false }) => {
             Certified Psychometric Document | Verified under the Aspireya Career Intelligence Framework
           </div>
           <div className="report-inner" style={{ paddingTop: 0 }}>
-            <ReportRouter 
-              report={report} 
+            <ReportRouter
+              report={report}
               isPremiumUnlocked={viewPremium}
               hasPremium={report.isPremium || localStorage.getItem('aspireya_premium_unlocked') === 'true'}
-              handleUpgrade={handleUpgradeClick} 
+              handleUpgrade={handleUpgradeClick}
             />
           </div>
           <div className="footer-seal" style={{ borderTop: 'none' }}>
