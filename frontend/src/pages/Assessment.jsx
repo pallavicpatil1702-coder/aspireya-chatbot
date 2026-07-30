@@ -271,7 +271,7 @@ const Assessment = () => {
         const sessionId = localStorage.getItem('aspireya_session_id');
 
         const response = await fetch(
-          `${API_URL}/assessment/questions`,
+          `${API_URL}/api/assessment/questions`,
           {
             headers: {
               'Session-Id': sessionId || 'default-session'
