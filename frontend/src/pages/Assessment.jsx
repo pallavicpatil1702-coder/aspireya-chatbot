@@ -264,15 +264,21 @@ const Assessment = () => {
   ];
 
   // Fetch Questions
+  const API_URL = import.meta.env.VITE_API_URL || '';
+
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
         const sessionId = localStorage.getItem('aspireya_session_id');
-        const response = await fetch('/api/assessment/questions', {
-          headers: {
-            'Session-Id': sessionId || 'default-session'
+
+        const response = await fetch(
+          `${API_URL}/assessment/questions`,
+          {
+            headers: {
+              'Session-Id': sessionId || 'default-session'
+            }
           }
-        });
+        );
         if (!response.ok) {
           throw new Error('Failed to load questions from backend.');
         }
