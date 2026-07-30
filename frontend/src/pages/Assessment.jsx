@@ -17,7 +17,7 @@ import {
   ChevronDown
 } from 'lucide-react';
 import logo from '../assets/logo.png';
-
+const API_URL = import.meta.env.VITE_API_URL || '';
 const STUDENT_SECTIONS = [
   { name: 'Career Interests', range: [0, 14] },
   { name: 'Personality', range: [15, 29] },
@@ -380,7 +380,7 @@ const Assessment = () => {
     setLoadingQuestions(true);
     try {
       const sessionId = localStorage.getItem('aspireya_session_id');
-      const response = await fetch(`/api/assessment/questions?type=${type}`, {
+      const response = await fetch(`${API_URL}/assessment/questions?type=${type}`, {
         headers: {
           'Session-Id': sessionId || 'default-session'
         }
