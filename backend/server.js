@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import chatRoutes from './routes/chatRoutes.js';
 import assessmentRoutes from './routes/assessmentRoutes.js';
 import reportRoutes from './routes/reportRoutes.js';
+import paymentRoutes from './routes/paymentRoutes.js';
 import { firebaseIsMock } from './config/firebase.js';
 import { aiIsMock } from './config/gemini.js';
 
@@ -37,6 +38,8 @@ app.use('/api/chat', chatRoutes);
 app.use('/api/assessment', assessmentRoutes);
 
 app.use('/api/report', reportRoutes);
+
+app.use('/api/payment', paymentRoutes);
 
 // Global Error Handler
 app.use((err, req, res, next) => {

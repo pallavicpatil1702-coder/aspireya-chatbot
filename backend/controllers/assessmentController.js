@@ -53,7 +53,17 @@ export const classifyUserType = (profile) => {
     /bba/i,
     /ba\b/i,
     /undergrad/i,
-    /diploma/i
+    /diploma/i,
+    /1st year/i,
+    /2nd year/i,
+    /3rd year/i,
+    /4th year/i,
+    /first year/i,
+    /second year/i,
+    /third year/i,
+    /fourth year/i,
+    /degree/i,
+    /bachelor/i
   ];
 
   // Postgraduate / Working Professional
